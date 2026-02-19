@@ -1,5 +1,5 @@
 {
-  "name": "bongsh",
+  "name": "@bongsh/nuxt",
   "private": true,
   "type": "module",
   "scripts": {
