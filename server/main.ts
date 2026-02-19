@@ -18,11 +18,21 @@ app.use(async (ctx) => {
     await send(ctx, path, {
       root,
       index: 'index.html',
+      maxage: 60 * 60 * 24 * 30,
+      immutable: true,
+      brotli: true,
+      gzip: true,
     })
   } catch {
     // 2. Fallback: If file not found, serve index.html for SPA routing
     // This allows browser-side routers (React/Vue/etc.) to handle the URL
-    await send(ctx, 'index.html', { root })
+    await send(ctx, 'index.html', {
+      root,
+      maxage: 60 * 60 * 24 * 30,
+      immutable: true,
+      brotli: true,
+      gzip: true,
+    })
   }
 })
 
