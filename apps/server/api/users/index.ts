@@ -18,4 +18,4 @@ router
     ctx.response.body = user;
   });
 
-export default router.routes();
+export default router;

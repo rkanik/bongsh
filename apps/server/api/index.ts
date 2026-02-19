@@ -5,9 +5,10 @@ const router = new Router();
 
 router
   .prefix("/api")
-  .use(users)
+  .use(users.routes())
+  .use(users.allowedMethods())
   .get("/", (ctx) => {
     ctx.response.body = "Welcome to Bongsh API";
   });
 
-export default router.routes();
+export default router;
