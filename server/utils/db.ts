@@ -1,19 +1,8 @@
+import { PrismaClient } from "@/generated/prisma/client.ts";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "~~/generated/prisma/client";
+import { DATABASE_URL } from "@/const.ts";
 
-const prismaClientSingleton = () => {
-  const pool = new PrismaPg({
-    connectionString: process.env.SUPABASE_DATABASE_URL!,
-  });
-  return new PrismaClient({ adapter: pool });
-};
+const adapter = new PrismaPg({ connectionString: DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
-
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined;
-};
-
-export const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
-
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export const db = prisma;
