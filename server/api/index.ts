@@ -1,14 +1,17 @@
-import { Router } from "@oak/oak";
-import users from "./users/index.ts";
+import { Router } from '@oak/oak'
+import auth from './auth/index.ts'
+import users from './users/index.ts'
 
-const router = new Router();
+const router = new Router()
 
 router
-  .prefix("/api")
+  .prefix('/api')
   .use(users.routes())
   .use(users.allowedMethods())
-  .get("/", (ctx) => {
-    ctx.response.body = "Welcome to Bongsh API";
-  });
+  .use(auth.routes())
+  .use(auth.allowedMethods())
+  .get('/', (ctx) => {
+    ctx.response.body = 'Welcome to Bongsh API'
+  })
 
-export default router;
+export default router
