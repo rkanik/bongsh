@@ -25,6 +25,7 @@
           >
             My tree
           </RouterLink>
+          <UserDropdown v-if="authStore.user" />
           <ThemeToggler />
         </nav>
       </div>
@@ -43,6 +44,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import ThemeToggler from '@/components/ThemeToggler.vue'
+import UserDropdown from '@/components/UserDropdown.vue'
 import { useAuthStore } from '@/stores/useAuthStore'
 
 const authStore = useAuthStore()

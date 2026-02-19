@@ -21,6 +21,7 @@ import NavSecondary from '@/components/NavSecondary.vue'
 // import NavWorkspaces from '@/components/NavWorkspaces.vue'
 import TeamSwitcher from '@/components/TeamSwitcher.vue'
 import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+import UserDropdown from './UserDropdown.vue'
 
 const props = defineProps<SidebarProps>()
 
@@ -259,7 +260,8 @@ const data = {
 <template>
   <Sidebar class="border-r-0" v-bind="props">
     <SidebarHeader>
-      <TeamSwitcher :teams="data.teams" />
+      <!-- <TeamSwitcher :teams="data.teams" /> -->
+      <UserDropdown />
       <NavMain :items="data.navMain" />
     </SidebarHeader>
     <SidebarContent>

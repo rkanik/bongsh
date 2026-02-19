@@ -9,15 +9,20 @@ export const useAuthStore = defineStore(
     const token = ref<string>()
 
     const login = async (email: string, password: string) => {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-      })
-      const data = await response.json()
-      user.value = {
-        id: 1,
+      try {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
+          method: 'POST',
+          body: JSON.stringify({ email, password }),
+        })
+        const data = await response.json()
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        user.value = { id: 1 }
+        token.value = 'data.token'
       }
-      router.push('/app')
+      router.replace('/app')
     }
 
     const logout = async () => {
@@ -26,7 +31,6 @@ export const useAuthStore = defineStore(
       })
       user.value = undefined
       token.value = undefined
-      router.push('/auth')
     }
 
     return {
