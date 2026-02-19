@@ -4,13 +4,11 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/nuxt"
+    "apps/client"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=@bongsh/nuxt",
-    "build": "npm run build --workspace=@bongsh/nuxt",
-    "lint": "npm run lint --workspace=@bongsh/nuxt",
-    "typecheck": "npm run typecheck --workspace=@bongsh/nuxt"
+    "build:client": "npm run build --workspace=client && cp -r apps/client/dist/* apps/server/public",
+    "build": "npm run build:client"
   },
   "engines": {
     "node": ">=18.0.0"
