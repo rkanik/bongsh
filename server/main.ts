@@ -11,7 +11,7 @@ app.use(api.allowedMethods())
 // Static File & SPA Fallback Middleware
 app.use(async (ctx) => {
   const path = ctx.request.url.pathname
-  const root = `${Deno.cwd()}/../dist`
+  const root = `${Deno.cwd()}/public`
 
   try {
     // 1. Try to serve the specific file (e.g., /app.js, /style.css)
