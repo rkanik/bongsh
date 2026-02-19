@@ -1,13 +1,24 @@
-# dotenv environment variable files
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
-# npm + other dependencies
-node_modules/
-vendor/
-
-/generated/prisma
-/generated/prisma
+.env.*
+!.env.example
