@@ -7,6 +7,7 @@
   },
   "imports": {
     "@/": "./",
+    "@momiji/cors": "jsr:@momiji/cors@^1.0.1",
     "@oak/oak": "jsr:@oak/oak@^17.2.0",
     "@prisma/adapter-pg": "npm:@prisma/adapter-pg@^7.4.0",
     "@prisma/client": "npm:@prisma/client@^7.4.0",
