@@ -1,5 +1,5 @@
 {
-  "name": "dasdasdasd",
+  "name": "bongsh",
   "type": "module",
   "private": true,
   "scripts": {
@@ -30,6 +30,8 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.92",
+    "@nuxt/icon": "^2.2.1",
     "@nuxtjs/i18n": "^10.2.3",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.1",
     "@types/pg": "^8.16.0",

@@ -9,9 +9,9 @@
         class="inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         aria-label="Theme"
       >
-        <LucideMonitor v-if="theme === 'system'" class="size-4" />
-        <LucideSun v-else-if="theme === 'light'" class="size-4" />
-        <LucideMoon v-else class="size-4" />
+        <Icon name="lucide:monitor" v-if="theme === 'system'" />
+        <Icon name="lucide:sun" v-else-if="theme === 'light'" />
+        <Icon name="lucide:moon" v-else />
       </button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="min-w-40">
@@ -20,15 +20,15 @@
         @update:model-value="(v) => v && setTheme(v as Theme)"
       >
         <DropdownMenuRadioItem value="light">
-          <LucideSun class="size-4" />
+          <Icon name="lucide:sun" />
           Light
         </DropdownMenuRadioItem>
         <DropdownMenuRadioItem value="dark">
-          <LucideMoon class="size-4" />
+          <Icon name="lucide:moon" />
           Dark
         </DropdownMenuRadioItem>
         <DropdownMenuRadioItem value="system">
-          <LucideMonitor class="size-4" />
+          <Icon name="lucide:monitor" />
           System
         </DropdownMenuRadioItem>
       </DropdownMenuRadioGroup>
@@ -37,5 +37,5 @@
 </template>
 
 <script setup lang="ts">
-const { theme, setTheme } = useTheme()
+const { theme, setTheme } = useTheme();
 </script>

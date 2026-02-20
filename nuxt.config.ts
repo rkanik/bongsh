@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "nuxt-auth-utils",
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
+    "@nuxt/icon",
   ],
   shadcn: {
     prefix: "",
