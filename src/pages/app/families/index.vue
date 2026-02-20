@@ -1,26 +1,70 @@
+<script setup lang="ts">
+import type { FamilyModel } from '../../../../server/generated/prisma/models/Family'
+import { ref, watch } from 'vue'
+import { Button } from '@/components/ui/button'
+import FamilyForm from '@/components/forms/FamilyForm.vue'
+
+const { data: families, isLoading } = useFamiliesQuery()
+
+const isDialogOpen = ref(false)
+const editingFamily = ref<FamilyModel | null>(null)
+
+watch(isDialogOpen, (open) => {
+  if (!open) editingFamily.value = null
+})
+
+function openCreateDialog() {
+  editingFamily.value = null
+  isDialogOpen.value = true
+}
+
+function openEditDialog(family: FamilyModel) {
+  editingFamily.value = family
+  isDialogOpen.value = true
+}
+</script>
+
 <template>
-  <div class="p-4">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quidem. Laborum blanditiis est
-    nostrum inventore nemo quidem nesciunt quos ratione saepe! Deserunt fugiat aliquam molestias
-    autem corporis veniam. Veniam est officiis ea sint distinctio ipsam voluptates odio dicta
-    adipisci! Perspiciatis libero commodi aliquam omnis rem iure ut ratione vitae maxime illo
-    assumenda voluptatum cupiditate ullam nam praesentium laudantium mollitia deleniti accusantium
-    modi, necessitatibus molestiae at dolore nostrum corporis! Veniam minima odio maxime, rem velit
-    nesciunt. Fugiat quae id impedit cupiditate nisi laboriosam asperiores, veritatis quasi, a
-    distinctio sunt maiores repudiandae deleniti dolore laudantium ducimus culpa! Voluptatibus
-    obcaecati, quibusdam tenetur ullam eius quam tempora adipisci temporibus enim earum odit
-    reiciendis cupiditate quisquam quas, voluptas debitis, possimus quasi atque ab recusandae! Atque
-    sint quod nisi pariatur commodi, illo mollitia consequatur corporis velit minima nostrum
-    maiores, nemo autem ipsa molestias. Dicta, eaque perferendis? Atque suscipit asperiores tempora
-    labore reprehenderit, nisi eligendi? Iusto recusandae illum, tenetur quo at doloremque cumque,
-    doloribus, explicabo beatae magnam consectetur quae amet! Inventore ex nihil reprehenderit
-    perspiciatis harum consequuntur exercitationem quibusdam, corrupti voluptatem at omnis odio,
-    praesentium, maxime excepturi perferendis suscipit. Aspernatur odit cupiditate unde, incidunt
-    expedita fuga veritatis accusamus quisquam debitis voluptate laborum maxime distinctio. Ipsam
-    quis id sequi debitis odio magni necessitatibus ullam saepe, provident non. Dicta assumenda
-    tenetur quod, ea harum ipsum quaerat dolores itaque magni voluptates soluta facere ullam! Vero,
-    nihil? Ipsum, iste soluta minima consectetur distinctio consequatur, enim dolore vel
-    voluptatibus nulla recusandae sunt iusto facilis ratione? Maiores, nulla sequi doloribus
-    blanditiis iusto dolore.
+  <div class="p-4 space-y-4">
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Families</h1>
+      <Button @click="openCreateDialog">Create Family</Button>
+    </div>
+
+    <FamilyForm v-model:open="isDialogOpen" :family="editingFamily" />
+
+    <div v-if="isLoading" class="text-center py-8">
+      Loading...
+    </div>
+
+    <div v-else-if="!families || families.length === 0" class="text-center py-8 text-muted-foreground">
+      No families found. Create your first family to get started.
+    </div>
+
+    <div v-else class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div
+        v-for="family in families"
+        :key="family.id"
+        class="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+        @click="openEditDialog(family)"
+      >
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-lg font-semibold">{{ family.name }}</h3>
+          <Button
+            variant="ghost"
+            size="sm"
+            @click.stop="openEditDialog(family)"
+          >
+            Edit
+          </Button>
+        </div>
+        <p class="text-sm text-muted-foreground mb-1">
+          <span class="font-medium">Slug:</span> {{ family.slug }}
+        </p>
+        <p v-if="family.description" class="text-sm text-muted-foreground">
+          {{ family.description }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>

@@ -108,6 +108,7 @@ declare global {
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const slugify: typeof import('./src/utils/slugify').slugify
   const storeToRefs: typeof import('pinia').storeToRefs
   const stores: typeof import('./src/stores/index').stores
   const syncRef: typeof import('@vueuse/core').syncRef
@@ -192,6 +193,8 @@ declare global {
   const useEventListener: typeof import('@vueuse/core').useEventListener
   const useEventSource: typeof import('@vueuse/core').useEventSource
   const useEyeDropper: typeof import('@vueuse/core').useEyeDropper
+  const useFamiliesMutation: typeof import('./src/composables/useFamiliesMutation').useFamiliesMutation
+  const useFamiliesQuery: typeof import('./src/composables/useFamiliesQuery').useFamiliesQuery
   const useFavicon: typeof import('@vueuse/core').useFavicon
   const useFetch: typeof import('@vueuse/core').useFetch
   const useFileDialog: typeof import('@vueuse/core').useFileDialog
@@ -250,6 +253,7 @@ declare global {
   const usePreferredReducedTransparency: typeof import('@vueuse/core').usePreferredReducedTransparency
   const usePrevious: typeof import('@vueuse/core').usePrevious
   const useQuery: typeof import('@tanstack/vue-query').useQuery
+  const useQueryClient: typeof import('@tanstack/vue-query').useQueryClient
   const useRafFn: typeof import('@vueuse/core').useRafFn
   const useRefHistory: typeof import('@vueuse/core').useRefHistory
   const useResizeObserver: typeof import('@vueuse/core').useResizeObserver

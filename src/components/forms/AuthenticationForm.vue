@@ -58,7 +58,7 @@ function onBack() {
             </div>
             <div class="flex flex-col gap-5">
               <Alert v-if="errors.length" variant="destructive">
-                <AlertCircleIcon />
+                <LucideAlertCircle />
                 <AlertTitle
                   >Error while {{ tab === 'login' ? 'logging in' : 'creating account' }}</AlertTitle
                 >

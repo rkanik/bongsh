@@ -4,16 +4,16 @@ import { z } from '@zod/zod'
 import { hash, verify } from '@felix/bcrypt'
 import { SignJWT } from '@panva/jose'
 import { JWT_SECRET } from '@/const.ts'
+import { validate } from '@/middlewares/validate.ts'
 
 const router = new Router()
 
-const secret = new TextEncoder().encode(JWT_SECRET)
 async function createJWT(payload: any): Promise<string> {
   const jwt = await new SignJWT(payload)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('168h')
-    .sign(secret)
+    .sign(JWT_SECRET)
   return jwt
 }
 
@@ -49,150 +49,134 @@ const zAuth = z
     }
   })
 
-router.prefix('/auth').post(
-  '/',
-  async (ctx, next) => {
-    const body = await ctx.request.body.json()
-    const result = zAuth.safeParse(body)
-    if (!result.success) {
-      ctx.response.status = 422
-      ctx.response.body = {
-        issues: result.error.issues,
-      }
-      return
-    }
-    ctx.state.body = result.data
-    await next()
-  },
-  async (ctx) => {
-    try {
-      const body: TZAuth = ctx.state.body
+router.prefix('/auth').post('/', validate(zAuth), async (ctx) => {
+  try {
+    const body: TZAuth = ctx.state.body
 
-      // Check
-      if (body.tab === 'check') {
-        const user = await db.user.findFirst({
-          where: {
-            email: body.email,
-          },
-        })
-        if (user) {
-          ctx.response.status = 200
-          ctx.response.body = {
-            tab: 'login',
-          }
-          return
-        }
+    // Check
+    if (body.tab === 'check') {
+      const user = await db.user.findFirst({
+        where: {
+          email: body.email,
+        },
+      })
+      if (user) {
         ctx.response.status = 200
         ctx.response.body = {
-          tab: 'register',
+          tab: 'login',
         }
         return
       }
-
-      // Login
-      if (body.tab === 'login') {
-        const user = await db.user.findFirst({
-          where: {
-            email: body.email,
-          },
-        })
-        if (!user) {
-          ctx.response.status = 422
-          ctx.response.body = {
-            issues: [
-              {
-                code: 'custom',
-                path: ['email'],
-                message: 'Wrong email address, try again!',
-              },
-            ],
-          }
-          return
-        }
-        if (!user.password) {
-          ctx.response.status = 422
-          ctx.response.body = {
-            message: 'Please login with social account',
-          }
-          return
-        }
-
-        const isPasswordValid = await verify(body.password, user.password)
-        if (!isPasswordValid) {
-          ctx.response.status = 422
-          ctx.response.body = {
-            issues: [
-              {
-                code: 'custom',
-                path: ['password'],
-                message: 'Wrong password, try again!',
-              },
-            ],
-          }
-          return
-        }
-        const token = await createJWT({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          avatar: user.avatar,
-        })
-        ctx.response.status = 200
-        ctx.response.body = { token, user }
-        return
-      }
-
-      // Register
-      if (body.tab === 'register') {
-        const existingUser = await db.user.findFirst({
-          where: {
-            email: body.email,
-          },
-        })
-        if (existingUser) {
-          ctx.response.status = 422
-          ctx.response.body = {
-            issues: [
-              {
-                code: 'custom',
-                path: ['email'],
-                message: 'Email address is already taken!',
-              },
-            ],
-          }
-          return
-        }
-        const user = await db.user.create({
-          data: {
-            name: body.name,
-            email: body.email,
-            password: await hash(body.password),
-          },
-        })
-        const token = await createJWT({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          avatar: user.avatar,
-        })
-        ctx.response.status = 200
-        ctx.response.body = { token, user }
-        return
-      }
-
-      ctx.response.status = 400
+      ctx.response.status = 200
       ctx.response.body = {
-        message: 'Invalid tab',
-      }
-      return
-    } catch (error) {
-      ctx.response.status = 500
-      ctx.response.body = {
-        message: error instanceof Error ? error.message : 'Internal server error',
+        tab: 'register',
       }
       return
     }
-  },
-)
+
+    // Login
+    if (body.tab === 'login') {
+      const user = await db.user.findFirst({
+        where: {
+          email: body.email,
+        },
+      })
+      if (!user) {
+        ctx.response.status = 422
+        ctx.response.body = {
+          issues: [
+            {
+              code: 'custom',
+              path: ['email'],
+              message: 'Wrong email address, try again!',
+            },
+          ],
+        }
+        return
+      }
+      if (!user.password) {
+        ctx.response.status = 422
+        ctx.response.body = {
+          message: 'Please login with social account',
+        }
+        return
+      }
+
+      const isPasswordValid = await verify(body.password, user.password)
+      if (!isPasswordValid) {
+        ctx.response.status = 422
+        ctx.response.body = {
+          issues: [
+            {
+              code: 'custom',
+              path: ['password'],
+              message: 'Wrong password, try again!',
+            },
+          ],
+        }
+        return
+      }
+      const token = await createJWT({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      })
+      ctx.response.status = 200
+      ctx.response.body = { token, user }
+      return
+    }
+
+    // Register
+    if (body.tab === 'register') {
+      const existingUser = await db.user.findFirst({
+        where: {
+          email: body.email,
+        },
+      })
+      if (existingUser) {
+        ctx.response.status = 422
+        ctx.response.body = {
+          issues: [
+            {
+              code: 'custom',
+              path: ['email'],
+              message: 'Email address is already taken!',
+            },
+          ],
+        }
+        return
+      }
+      const user = await db.user.create({
+        data: {
+          name: body.name,
+          email: body.email,
+          password: await hash(body.password),
+        },
+      })
+      const token = await createJWT({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      })
+      ctx.response.status = 200
+      ctx.response.body = { token, user }
+      return
+    }
+
+    ctx.response.status = 400
+    ctx.response.body = {
+      message: 'Invalid tab',
+    }
+    return
+  } catch (error) {
+    ctx.response.status = 500
+    ctx.response.body = {
+      message: error instanceof Error ? error.message : 'Internal server error',
+    }
+    return
+  }
+})
 
 export default router

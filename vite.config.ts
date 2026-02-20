@@ -36,7 +36,7 @@ export default defineConfig({
           zod: ['z'],
           'vue-sonner': ['toast'],
           '@tanstack/vue-form': ['useForm'],
-          '@tanstack/vue-query': ['useQuery', 'useMutation'],
+          '@tanstack/vue-query': ['useQuery', 'useMutation', 'useQueryClient'],
         },
       ],
     }),
@@ -59,6 +59,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@server': fileURLToPath(new URL('./server', import.meta.url)),
     },
   },
 })

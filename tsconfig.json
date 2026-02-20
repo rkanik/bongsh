@@ -11,8 +11,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@server/*": [
+        "./server/*"
+      ]
     },
-    "types": ["unplugin-icons/types/vue"]
+    "types": [
+      "unplugin-icons/types/vue"
+    ]
   }
 }
