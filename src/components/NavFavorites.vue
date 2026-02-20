@@ -1,28 +1,5 @@
 <script setup lang="ts">
-import {
-  ArrowUpRight,
-  Link,
-  MoreHorizontal,
-  StarOff,
-  Trash2,
-} from "lucide-vue-next"
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from '@/components/ui/sidebar'
+import { useSidebar } from './ui/sidebar'
 
 defineProps<{
   favorites: {
@@ -49,7 +26,7 @@ const { isMobile } = useSidebar()
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
             <SidebarMenuAction show-on-hover>
-              <MoreHorizontal />
+              <LucideMoreHorizontal />
               <span class="sr-only">More</span>
             </SidebarMenuAction>
           </DropdownMenuTrigger>
@@ -59,21 +36,21 @@ const { isMobile } = useSidebar()
             :align="isMobile ? 'end' : 'start'"
           >
             <DropdownMenuItem>
-              <StarOff class="text-muted-foreground" />
+              <LucideStarOff class="text-muted-foreground" />
               <span>Remove from Favorites</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link class="text-muted-foreground" />
+              <LucideLink class="text-muted-foreground" />
               <span>Copy Link</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <ArrowUpRight class="text-muted-foreground" />
+              <LucideArrowUpRight class="text-muted-foreground" />
               <span>Open in New Tab</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Trash2 class="text-muted-foreground" />
+              <LucideTrash2 class="text-muted-foreground" />
               <span>Delete</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -82,7 +59,7 @@ const { isMobile } = useSidebar()
 
       <SidebarMenuItem>
         <SidebarMenuButton class="text-sidebar-foreground/70">
-          <MoreHorizontal />
+          <LucideMoreHorizontal />
           <span>More</span>
         </SidebarMenuButton>
       </SidebarMenuItem>

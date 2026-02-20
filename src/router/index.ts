@@ -1,4 +1,3 @@
-import { useAuthStore } from '@/stores/useAuthStore'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -48,4 +47,4 @@ router.beforeEach((to, from, next) => {
   return next()
 })
 
-export default router
+export { router }

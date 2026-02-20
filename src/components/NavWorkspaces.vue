@@ -1,24 +1,4 @@
 <script setup lang="ts">
-import { ChevronRight, MoreHorizontal, Plus } from "lucide-vue-next"
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
-import {
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from '@/components/ui/sidebar'
-
 defineProps<{
   workspaces: {
     name: string
@@ -49,11 +29,11 @@ defineProps<{
                 class="left-2 bg-sidebar-accent text-sidebar-accent-foreground data-[state=open]:rotate-90"
                 show-on-hover
               >
-                <ChevronRight />
+                <LucideChevronRight />
               </SidebarMenuAction>
             </CollapsibleTrigger>
             <SidebarMenuAction show-on-hover>
-              <Plus />
+              <LucidePlus />
             </SidebarMenuAction>
             <CollapsibleContent>
               <SidebarMenuSub>
@@ -72,7 +52,7 @@ defineProps<{
 
         <SidebarMenuItem>
           <SidebarMenuButton class="text-sidebar-foreground/70">
-            <MoreHorizontal />
+            <LucideMoreHorizontal />
             <span>More</span>
           </SidebarMenuButton>
         </SidebarMenuItem>

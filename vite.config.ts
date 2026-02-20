@@ -6,38 +6,37 @@ import tailwindcss from '@tailwindcss/vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
-    vueDevTools(),
-    Components({
-      dts: true,
-      directoryAsNamespace: false,
-    }),
     AutoImport({
       dts: true,
       dtsMode: 'overwrite',
       viteOptimizeDeps: true,
-      dirs: ['./src/composables/**', './src/stores/**'],
-      include: [
-        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue$/,
-        /\.vue\?vue/, // .vue
-        /\.vue\.[tj]sx?\?vue/, // .vue (vue-loader with experimentalInlineMatchResource enabled)
-        /\.md$/, // .md
-      ],
-      imports: [
-        'vue',
-        'vue-router',
-        'pinia',
-        {
-          'lucide-vue-next': ['Sun', 'Moon', 'Monitor'],
-        },
+      dirs: ['./src/composables/**', './src/stores/**', './src/router/**', './src/lib/**'],
+      include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/],
+      imports: ['vue', 'pinia', 'vue-router'],
+    }),
+    Icons({
+      compiler: 'vue3',
+      autoInstall: true,
+    }),
+    Components({
+      dts: true,
+      syncMode: 'overwrite',
+      directoryAsNamespace: false,
+      resolvers: [
+        IconsResolver({
+          prefix: '',
+        }),
       ],
     }),
+    vueDevTools(),
   ],
   resolve: {
     alias: {

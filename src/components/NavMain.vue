@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import type { LucideIcon } from "lucide-vue-next"
-
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar'
-
 defineProps<{
   items: {
     title: string
     url: string
-    icon: LucideIcon
+    icon: Component
     isActive?: boolean
   }[]
 }>()

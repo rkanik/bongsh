@@ -1,23 +1,4 @@
 <script setup lang="ts">
-import type { Component } from "vue"
-import { ChevronDown, Plus } from "lucide-vue-next"
-import { ref } from "vue"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar'
-
 const props = defineProps<{
   teams: {
     name: string
@@ -35,22 +16,17 @@ const activeTeam = ref(props.teams[0])
       <DropdownMenu>
         <DropdownMenuTrigger as-child>
           <SidebarMenuButton class="w-fit px-1.5">
-            <div class="flex aspect-square size-5 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
+            <div
+              class="flex aspect-square size-5 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground"
+            >
               <component :is="activeTeam.logo" class="size-3" />
             </div>
             <span class="truncate font-semibold">{{ activeTeam.name }}</span>
-            <ChevronDown class="opacity-50" />
+            <LucideChevronDown class="opacity-50" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
-        <DropdownMenuContent
-          class="w-64 rounded-lg"
-          align="start"
-          side="bottom"
-          :side-offset="4"
-        >
-          <DropdownMenuLabel class="text-xs text-muted-foreground">
-            Teams
-          </DropdownMenuLabel>
+        <DropdownMenuContent class="w-64 rounded-lg" align="start" side="bottom" :side-offset="4">
+          <DropdownMenuLabel class="text-xs text-muted-foreground"> Teams </DropdownMenuLabel>
           <DropdownMenuItem
             v-for="(team, index) in teams"
             :key="team.name"
@@ -66,11 +42,9 @@ const activeTeam = ref(props.teams[0])
           <DropdownMenuSeparator />
           <DropdownMenuItem class="gap-2 p-2">
             <div class="flex size-6 items-center justify-center rounded-md border bg-background">
-              <Plus class="size-4" />
+              <LucidePlus class="size-4" />
             </div>
-            <div class="font-medium text-muted-foreground">
-              Add team
-            </div>
+            <div class="font-medium text-muted-foreground">Add team</div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -53,7 +53,7 @@
       </div>
       <DropdownMenuSeparator />
       <DropdownMenuItem variant="destructive" @select="authStore.logout()">
-        <LogOut class="size-4" />
+        <LucideLogOut class="size-4" />
         Log out
       </DropdownMenuItem>
     </DropdownMenuContent>
@@ -61,17 +61,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { useAuthStore } from '@/stores/useAuthStore'
-import { computed } from 'vue'
-import { LogOut } from 'lucide-vue-next'
-
 const authStore = useAuthStore()
 const user = computed(() => authStore.user)
 

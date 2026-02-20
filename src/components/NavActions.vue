@@ -1,98 +1,79 @@
 <script setup lang="ts">
-import {
-  ArrowDown,
-  ArrowUp,
-  Bell,
-  Copy,
-  CornerUpLeft,
-  CornerUpRight,
-  FileText,
-  GalleryVerticalEnd,
-  LineChart,
-  Link,
-  MoreHorizontal,
-  Settings2,
-  Star,
-  Trash,
-  Trash2,
-} from "lucide-vue-next"
-
-import { ref } from "vue"
-import { Button } from '@/components/ui/button'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar'
+import LucideArrowDown from '~icons/lucide/arrow-down'
+import LucideArrowUp from '~icons/lucide/arrow-up'
+import LucideBell from '~icons/lucide/bell'
+import LucideCopy from '~icons/lucide/copy'
+import LucideCornerUpLeft from '~icons/lucide/corner-up-left'
+import LucideCornerUpRight from '~icons/lucide/corner-up-right'
+import LucideFileText from '~icons/lucide/file-text'
+import LucideGalleryVerticalEnd from '~icons/lucide/gallery-vertical-end'
+import LucideLineChart from '~icons/lucide/line-chart'
+import LucideLink from '~icons/lucide/link'
+import LucideMoreHorizontal from '~icons/lucide/more-horizontal'
+import LucideSettings2 from '~icons/lucide/settings-2'
+import LucideStar from '~icons/lucide/star'
+import LucideTrash from '~icons/lucide/trash'
+import LucideTrash2 from '~icons/lucide/trash-2'
 
 const data = [
   [
     {
-      label: "Customize Page",
-      icon: Settings2,
+      label: 'Customize Page',
+      icon: LucideSettings2,
     },
     {
-      label: "Turn into wiki",
-      icon: FileText,
-    },
-  ],
-  [
-    {
-      label: "Copy Link",
-      icon: Link,
-    },
-    {
-      label: "Duplicate",
-      icon: Copy,
-    },
-    {
-      label: "Move to",
-      icon: CornerUpRight,
-    },
-    {
-      label: "Move to Trash",
-      icon: Trash2,
+      label: 'Turn into wiki',
+      icon: LucideFileText,
     },
   ],
   [
     {
-      label: "Undo",
-      icon: CornerUpLeft,
+      label: 'Copy Link',
+      icon: LucideLink,
     },
     {
-      label: "View analytics",
-      icon: LineChart,
+      label: 'Duplicate',
+      icon: LucideCopy,
     },
     {
-      label: "Version History",
-      icon: GalleryVerticalEnd,
+      label: 'Move to',
+      icon: LucideCornerUpRight,
     },
     {
-      label: "Show delete pages",
-      icon: Trash,
-    },
-    {
-      label: "Notifications",
-      icon: Bell,
+      label: 'Move to Trash',
+      icon: LucideTrash2,
     },
   ],
   [
     {
-      label: "Import",
-      icon: ArrowUp,
+      label: 'Undo',
+      icon: LucideCornerUpLeft,
     },
     {
-      label: "Export",
-      icon: ArrowDown,
+      label: 'View analytics',
+      icon: LucideLineChart,
+    },
+    {
+      label: 'Version History',
+      icon: LucideGalleryVerticalEnd,
+    },
+    {
+      label: 'Show delete pages',
+      icon: LucideTrash,
+    },
+    {
+      label: 'Notifications',
+      icon: LucideBell,
+    },
+  ],
+  [
+    {
+      label: 'Import',
+      icon: LucideArrowUp,
+    },
+    {
+      label: 'Export',
+      icon: LucideArrowDown,
     },
   ],
 ]
@@ -102,29 +83,24 @@ const isOpen = ref(false)
 
 <template>
   <div class="flex items-center gap-2 text-sm">
-    <div class="hidden font-medium text-muted-foreground md:inline-block">
-      Edit Oct 08
-    </div>
+    <div class="hidden font-medium text-muted-foreground md:inline-block">Edit Oct 08</div>
     <Button variant="ghost" size="icon" class="h-7 w-7">
-      <Star />
+      <LucideStar />
     </Button>
     <Popover v-model:open="isOpen">
       <PopoverTrigger as-child>
-        <Button
-          variant="ghost"
-          size="icon"
-          class="h-7 w-7 data-[state=open]:bg-accent"
-        >
-          <MoreHorizontal />
+        <Button variant="ghost" size="icon" class="h-7 w-7 data-[state=open]:bg-accent">
+          <LucideMoreHorizontal />
         </Button>
       </PopoverTrigger>
-      <PopoverContent
-        class="w-56 overflow-hidden rounded-lg p-0"
-        align="end"
-      >
+      <PopoverContent class="w-56 overflow-hidden rounded-lg p-0" align="end">
         <Sidebar collapsible="none" class="bg-transparent">
           <SidebarContent>
-            <SidebarGroup v-for="(group, index) in data" :key="index" class="border-b last:border-none">
+            <SidebarGroup
+              v-for="(group, index) in data"
+              :key="index"
+              class="border-b last:border-none"
+            >
               <SidebarGroupContent class="gap-0">
                 <SidebarMenu>
                   <SidebarMenuItem v-for="(item, index) in group" :key="index">

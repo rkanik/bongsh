@@ -7,10 +7,8 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue').EffectScope
-  const Monitor: typeof import('lucide-vue-next').Monitor
-  const Moon: typeof import('lucide-vue-next').Moon
-  const Sun: typeof import('lucide-vue-next').Sun
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
+  const cn: typeof import('./src/lib/utils').cn
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
@@ -58,13 +56,14 @@ declare global {
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
   const resolveComponent: typeof import('vue').resolveComponent
+  const router: typeof import('./src/router/index').router
   const setActivePinia: typeof import('pinia').setActivePinia
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
   const storeToRefs: typeof import('pinia').storeToRefs
-  const stores: typeof import('./src/stores/index').default
+  const stores: typeof import('./src/stores/index').stores
   const toRaw: typeof import('vue').toRaw
   const toRef: typeof import('vue').toRef
   const toRefs: typeof import('vue').toRefs
