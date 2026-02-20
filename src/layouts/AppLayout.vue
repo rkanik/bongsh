@@ -9,9 +9,7 @@
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbPage class="line-clamp-1">
-                  Project Management & Task Tracking
-                </BreadcrumbPage>
+                <BreadcrumbPage class="line-clamp-1">My Family</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

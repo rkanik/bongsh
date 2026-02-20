@@ -32,6 +32,14 @@ const router = createRouter({
           component: () => import('@/pages/app/index.vue'),
         },
         {
+          path: 'families',
+          component: () => import('@/pages/app/families/index.vue'),
+        },
+        {
+          path: 'shared',
+          component: () => import('@/pages/app/shared/index.vue'),
+        },
+        {
           path: 'settings',
           component: () => import('@/pages/app/settings/index.vue'),
         },

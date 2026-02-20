@@ -6,6 +6,8 @@ import LucideBlocks from '~icons/lucide/blocks'
 import LucideTrash2 from '~icons/lucide/trash-2'
 import LucideMessageCircleQuestion from '~icons/lucide/message-circle-question'
 import type { SidebarProps } from './ui/sidebar'
+import LucideHouse from '~icons/lucide/house'
+import LucideUsers from '~icons/lucide/users'
 
 const props = defineProps<SidebarProps>()
 
@@ -13,10 +15,19 @@ const props = defineProps<SidebarProps>()
 const data = {
   navMain: [
     {
-      title: 'My Family',
+      title: 'Home',
       to: '/app',
+      icon: LucideHouse,
+    },
+    {
+      title: 'Families',
+      to: '/app/families',
+      icon: LucideUsers,
+    },
+    {
+      title: 'Shared',
+      to: '/app/shared',
       icon: LucideFolderTree,
-      isActive: true,
     },
     {
       title: 'Settings',
