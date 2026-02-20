@@ -19,6 +19,16 @@ export default defineConfig({
     }),
     AutoImport({
       dts: true,
+      dtsMode: 'overwrite',
+      viteOptimizeDeps: true,
+      dirs: ['./src/composables/**', './src/stores/**'],
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+        /\.vue\.[tj]sx?\?vue/, // .vue (vue-loader with experimentalInlineMatchResource enabled)
+        /\.md$/, // .md
+      ],
       imports: [
         'vue',
         'vue-router',
@@ -27,9 +37,6 @@ export default defineConfig({
           'lucide-vue-next': ['Sun', 'Moon', 'Monitor'],
         },
       ],
-      dtsMode: 'overwrite',
-      viteOptimizeDeps: true,
-      dirs: ['./src/composables/**', './src/stores/**'],
     }),
   ],
   resolve: {
