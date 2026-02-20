@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { FamilyModel } from '../../../server/generated/prisma/models/Family'
-import { slugify } from '@/utils/slugify'
+import type { TFamily } from '@/types'
+import { slugify } from '@server/utils/slugify.ts'
 
 const props = withDefaults(
   defineProps<{
     open?: boolean
-    family?: FamilyModel | null
+    family?: TFamily | null
   }>(),
   { open: false, family: null },
 )

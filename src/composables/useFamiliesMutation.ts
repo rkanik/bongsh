@@ -1,4 +1,4 @@
-import type { FamilyModel } from '../../../server/generated/prisma/models/Family'
+import type { TFamily } from '@/types'
 
 type FamilyInput = {
   name: string
@@ -13,10 +13,10 @@ export const useFamiliesMutation = () => {
     mutationKey: ['families'],
     mutationFn: async ({ id, data }: { id?: number; data: FamilyInput }) => {
       if (id) {
-        const response = await api.put<FamilyModel>(`/families/${id}`, data)
+        const response = await api.put<TFamily>(`/families/${id}`, data)
         return response.data
       } else {
-        const response = await api.post<FamilyModel>('/families', data)
+        const response = await api.post<TFamily>('/families', data)
         return response.data
       }
     },

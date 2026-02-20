@@ -1,10 +1,10 @@
-import type { FamilyModel } from '@server/generated/prisma/models/Family.ts'
+import type { TFamily } from '@/types'
 
 export const useFamiliesQuery = () => {
   return useQuery({
     queryKey: ['families'],
     queryFn: async () => {
-      const response = await api.get<FamilyModel[]>('/families')
+      const response = await api.get<TFamily[]>('/families')
       return response.data
     },
   })

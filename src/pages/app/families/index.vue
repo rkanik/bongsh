@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FamilyModel } from '../../../../server/generated/prisma/models/Family'
+import type { TFamily } from '@/types'
 import { ref, watch } from 'vue'
 import { Button } from '@/components/ui/button'
 import FamilyForm from '@/components/forms/FamilyForm.vue'
@@ -7,7 +7,7 @@ import FamilyForm from '@/components/forms/FamilyForm.vue'
 const { data: families, isLoading } = useFamiliesQuery()
 
 const isDialogOpen = ref(false)
-const editingFamily = ref<FamilyModel | null>(null)
+const editingFamily = ref<TFamily | null>(null)
 
 watch(isDialogOpen, (open) => {
   if (!open) editingFamily.value = null
@@ -18,7 +18,7 @@ function openCreateDialog() {
   isDialogOpen.value = true
 }
 
-function openEditDialog(family: FamilyModel) {
+function openEditDialog(family: TFamily) {
   editingFamily.value = family
   isDialogOpen.value = true
 }
@@ -33,11 +33,12 @@ function openEditDialog(family: FamilyModel) {
 
     <FamilyForm v-model:open="isDialogOpen" :family="editingFamily" />
 
-    <div v-if="isLoading" class="text-center py-8">
-      Loading...
-    </div>
+    <div v-if="isLoading" class="text-center py-8">Loading...</div>
 
-    <div v-else-if="!families || families.length === 0" class="text-center py-8 text-muted-foreground">
+    <div
+      v-else-if="!families || families.length === 0"
+      class="text-center py-8 text-muted-foreground"
+    >
       No families found. Create your first family to get started.
     </div>
 
@@ -50,13 +51,7 @@ function openEditDialog(family: FamilyModel) {
       >
         <div class="flex justify-between items-start mb-2">
           <h3 class="text-lg font-semibold">{{ family.name }}</h3>
-          <Button
-            variant="ghost"
-            size="sm"
-            @click.stop="openEditDialog(family)"
-          >
-            Edit
-          </Button>
+          <Button variant="ghost" size="sm" @click.stop="openEditDialog(family)"> Edit </Button>
         </div>
         <p class="text-sm text-muted-foreground mb-1">
           <span class="font-medium">Slug:</span> {{ family.slug }}

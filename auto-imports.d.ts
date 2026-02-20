@@ -108,7 +108,6 @@ declare global {
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
-  const slugify: typeof import('./src/utils/slugify').slugify
   const storeToRefs: typeof import('pinia').storeToRefs
   const stores: typeof import('./src/stores/index').stores
   const syncRef: typeof import('@vueuse/core').syncRef
