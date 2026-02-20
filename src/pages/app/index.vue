@@ -14,10 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 const serverUrl = import.meta.env.VITE_SERVER_URL
-const users = ref<any[]>([])
+interface User {
+  id: number
+  name: string
+}
+const users = ref<User[]>([])
 
 onMounted(() => {
   fetch(`${serverUrl}/api/users`)

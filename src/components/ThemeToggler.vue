@@ -9,7 +9,9 @@
         class="inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         aria-label="Theme"
       >
-        <component :is="themeIcon" class="size-4" />
+        <Monitor v-if="theme === 'system'" class="size-4" />
+        <Sun v-else-if="theme === 'light'" class="size-4" />
+        <Moon v-else class="size-4" />
       </button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="min-w-40">
@@ -35,28 +37,5 @@
 </template>
 
 <script setup lang="ts">
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import type { Theme } from '@/composables/useTheme'
-import { useTheme } from '@/composables/useTheme'
-import { computed } from 'vue'
-import { Monitor, Moon, Sun } from 'lucide-vue-next'
-
 const { theme, setTheme } = useTheme()
-
-const themeIcon = computed(() => {
-  switch (theme.value) {
-    case 'light':
-      return Sun
-    case 'dark':
-      return Moon
-    default:
-      return Monitor
-  }
-})
 </script>
