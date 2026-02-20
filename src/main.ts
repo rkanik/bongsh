@@ -8,5 +8,5 @@ app.use(stores)
 app.use(router)
 app.use(VueQueryPlugin)
 
-await router.isReady()
+// await router.isReady()
 app.mount('#app')
