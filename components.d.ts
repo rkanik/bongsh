@@ -70,7 +70,6 @@ declare module 'vue' {
     Input: typeof import('./src/components/ui/input/Input.vue')['default']
     Label: typeof import('./src/components/ui/label/Label.vue')['default']
     LogoutDialog: typeof import('./src/components/LogoutDialog.vue')['default']
-    LucideChevronDown: typeof import('~icons/lucide/chevron-down')['default']
     LucideLogOut: typeof import('~icons/lucide/log-out')['default']
     LucideMonitor: typeof import('~icons/lucide/monitor')['default']
     LucideMoon: typeof import('~icons/lucide/moon')['default']

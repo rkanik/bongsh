@@ -6,6 +6,7 @@ const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
 
+const { onError } = useFormError()
 const { mutate, isPending } = useAuthMutation()
 
 const form = useForm({
@@ -18,30 +19,13 @@ const form = useForm({
   },
   onSubmit({ value }) {
     mutate(value, {
+      onError: (error) => onError(error, form),
       onSuccess(res) {
         if (res.data.tab) {
           return form.setFieldValue('tab', res.data.tab)
         }
         toast.success('Authentication successful!')
-        router.replace('/app')
-      },
-      onError(error: any) {
-        if (error.response?.status === 422) {
-          const issues = error.response?.data?.issues ?? []
-          issues.forEach((issue: any) => {
-            form.setFieldMeta(issue.path[0], (v) => ({
-              ...v,
-              errorMap: {
-                onSubmit: issue.message,
-              },
-            }))
-          })
-          if (!issues.length) {
-            form.setErrorMap({
-              onSubmit: error.response?.data?.message ?? 'Something went wrong',
-            })
-          }
-        }
+        router.push('/app')
       },
     })
   },
@@ -56,7 +40,9 @@ function isInvalid(field: any) {
 
 function onBack() {
   form.setFieldValue('tab', 'check')
-  form.reset()
+  ;(['name', 'password', 'confirmPassword'] as const).forEach((field) => {
+    form.resetField(field)
+  })
 }
 </script>
 

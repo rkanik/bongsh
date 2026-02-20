@@ -199,6 +199,7 @@ declare global {
   const useFocus: typeof import('@vueuse/core').useFocus
   const useFocusWithin: typeof import('@vueuse/core').useFocusWithin
   const useForm: typeof import('@tanstack/vue-form').useForm
+  const useFormError: typeof import('./src/composables/useFormError').useFormError
   const useFps: typeof import('@vueuse/core').useFps
   const useFullscreen: typeof import('@vueuse/core').useFullscreen
   const useGamepad: typeof import('@vueuse/core').useGamepad
