@@ -1,0 +1,192 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./client"
+  runtime  = "deno"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["bongsh"]
+}
+
+// START BONGSH
+enum ParentType {
+  FATHER
+  MOTHER
+  ADOPTIVE
+
+  @@map("ParentType")
+  @@schema("bongsh")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+
+  @@map("Gender")
+  @@schema("bongsh")
+}
+
+enum FamilyRole {
+  OWNER
+  EDITOR
+  VIEWER
+
+  @@map("FamilyRole")
+  @@schema("bongsh")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  name     String
+  email    String? @unique
+  phone    String? @unique
+  avatar   String?
+  password String?
+
+  persons  UserPerson[]
+  members  FamilyMember[]
+  families Family[]
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @default(now()) @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+
+  @@index([email])
+  @@index([phone])
+  @@map("users")
+  @@schema("bongsh")
+}
+
+model Family {
+  id      Int @id @default(autoincrement())
+  ownerId Int
+
+  name        String
+  slug        String  @unique
+  description String?
+
+  owner   User           @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  persons Person[]
+  members FamilyMember[]
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @default(now()) @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+
+  @@index([ownerId])
+  @@index([slug])
+  @@map("families")
+  @@schema("bongsh")
+}
+
+model FamilyMember {
+  id       Int @id @default(autoincrement())
+  userId   Int
+  familyId Int
+
+  role FamilyRole
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  family Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([familyId, userId])
+  @@index([userId])
+  @@index([familyId])
+  @@map("familyMembers")
+  @@schema("bongsh")
+}
+
+model Person {
+  id       Int  @id @default(autoincrement())
+  familyId Int?
+
+  name     String
+  email    String?
+  phone    String?
+  avatar   String?
+  dob      DateTime? @db.Date
+  dod      DateTime? @db.Date
+  gender   Gender?
+  isLiving Boolean   @default(true)
+
+  users    UserPerson[]
+  family   Family?       @relation(fields: [familyId], references: [id], onDelete: SetNull)
+  parents  ParentChild[] @relation("Parent")
+  children ParentChild[] @relation("Child")
+  husbands Marriage[]    @relation("Husband")
+  wives    Marriage[]    @relation("Wife")
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @default(now()) @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+
+  @@index([familyId])
+  @@index([name])
+  @@index([dob])
+  @@index([email])
+  @@map("persons")
+  @@schema("bongsh")
+}
+
+model UserPerson {
+  id       Int @id @default(autoincrement())
+  ownerId  Int
+  personId Int
+
+  owner  User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  person Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([ownerId, personId])
+  @@index([ownerId])
+  @@index([personId])
+  @@map("usersPersons")
+  @@schema("bongsh")
+}
+
+model ParentChild {
+  id       Int @id @default(autoincrement())
+  parentId Int
+  childId  Int
+
+  type ParentType
+
+  parent Person @relation("Parent", fields: [parentId], references: [id], onDelete: Cascade)
+  child  Person @relation("Child", fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, childId, type])
+  @@index([parentId])
+  @@index([childId])
+  @@map("parentChildren")
+  @@schema("bongsh")
+}
+
+model Marriage {
+  id        Int @id @default(autoincrement())
+  husbandId Int
+  wifeId    Int
+
+  marriageDate DateTime? @db.Date
+  divorceDate  DateTime? @db.Date
+
+  husband Person @relation("Husband", fields: [husbandId], references: [id], onDelete: Cascade)
+  wife    Person @relation("Wife", fields: [wifeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([husbandId, wifeId])
+  @@index([husbandId])
+  @@index([wifeId])
+  @@index([marriageDate])
+  @@map("marriages")
+  @@schema("bongsh")
+}
+
+// END BONGSH
