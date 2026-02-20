@@ -3,7 +3,7 @@
     <AlertDialogTrigger as-child>
       <Button ref="logoutButton" v-show="!hidden" variant="outline">Logout</Button>
     </AlertDialogTrigger>
-    <AlertDialogContent>
+    <AlertDialogContent class="bg-neutral-800">
       <AlertDialogHeader>
         <AlertDialogTitle>Logout</AlertDialogTitle>
         <AlertDialogDescription> Are you sure you want to logout? </AlertDialogDescription>

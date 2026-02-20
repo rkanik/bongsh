@@ -2,15 +2,12 @@
   <DropdownMenu>
     <DropdownMenuTrigger
       as-child
-      class="inline-flex items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+      class="inline-flex items-center outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
     >
-      <button
-        type="button"
-        class="flex items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        aria-label="User menu"
-      >
+      <!-- class="flex items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" -->
+      <Button variant="ghost" class="justify-start px-1" aria-label="User menu">
         <div
-          class="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-muted-foreground"
+          class="flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-muted-foreground"
         >
           <img
             v-if="user?.avatar"
@@ -22,10 +19,11 @@
             {{ initials }}
           </span>
         </div>
-        <span class="max-w-32 truncate font-medium text-foreground sm:max-w-40">
+        <span v-if="!small" class="max-w-32 truncate font-medium text-foreground sm:max-w-40">
           {{ user?.name ?? user?.email ?? 'User' }}
         </span>
-      </button>
+        <!-- <LucideChevronDown class="opacity-50" /> -->
+      </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="w-56">
       <div class="flex items-center gap-3 p-2">
@@ -64,6 +62,10 @@
 <script setup lang="ts">
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
+
+defineProps<{
+  small?: boolean
+}>()
 
 const initials = computed(() => {
   const u = user.value

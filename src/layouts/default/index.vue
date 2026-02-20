@@ -25,8 +25,8 @@
           >
             My tree
           </RouterLink>
-          <UserDropdown v-if="authStore.user" />
           <ThemeToggler />
+          <UserDropdown small v-if="authStore.user" />
         </nav>
       </div>
     </header>
