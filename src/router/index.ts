@@ -22,7 +22,7 @@ const router = createRouter({
     },
     {
       path: '/app',
-      component: () => import('@/layouts/app/index.vue'),
+      component: () => import('@/layouts/AppLayout.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -30,6 +30,16 @@ const router = createRouter({
         {
           path: '',
           component: () => import('@/pages/app/index.vue'),
+          meta: {
+            transition: 'slide-up',
+          },
+        },
+        {
+          path: 'settings',
+          component: () => import('@/pages/app/settings/index.vue'),
+          meta: {
+            transition: 'slide-up',
+          },
         },
       ],
     },

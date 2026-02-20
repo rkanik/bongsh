@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import LucideSearch from '~icons/lucide/search'
-import LucideSparkles from '~icons/lucide/sparkles'
-import LucideHome from '~icons/lucide/home'
-import LucideInbox from '~icons/lucide/inbox'
+import LucideFolderTree from '~icons/lucide/folder-tree'
 import LucideCalendar from '~icons/lucide/calendar'
 import LucideSettings2 from '~icons/lucide/settings-2'
 import LucideBlocks from '~icons/lucide/blocks'
@@ -16,26 +13,15 @@ const props = defineProps<SidebarProps>()
 const data = {
   navMain: [
     {
-      title: 'Search',
-      url: '#',
-      icon: LucideSearch,
-    },
-    {
-      title: 'Ask AI',
-      url: '#',
-      icon: LucideSparkles,
-    },
-    {
-      title: 'Home',
-      url: '#',
-      icon: LucideHome,
+      title: 'My Family',
+      to: '/app',
+      icon: LucideFolderTree,
       isActive: true,
     },
     {
-      title: 'Inbox',
-      url: '#',
-      icon: LucideInbox,
-      badge: '10',
+      title: 'Settings',
+      to: '/app/settings',
+      icon: LucideSettings2,
     },
   ],
   navSecondary: [
@@ -71,13 +57,19 @@ const data = {
 <template>
   <Sidebar class="border-r-0" v-bind="props">
     <SidebarHeader>
-      <!-- <TeamSwitcher :teams="data.teams" /> -->
       <UserDropdown />
-      <NavMain :items="data.navMain" />
+      <SidebarMenu>
+        <SidebarMenuItem v-for="item in data.navMain" :key="item.title">
+          <SidebarMenuButton as-child :is-active="item.to === $route.path">
+            <RouterLink :to="item.to">
+              <component :is="item.icon" />
+              <span>{{ item.title }}</span>
+            </RouterLink>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
     </SidebarHeader>
     <SidebarContent>
-      <!-- <NavFavorites :favorites="data.favorites" />
-      <NavWorkspaces :workspaces="data.workspaces" /> -->
       <NavSecondary :items="data.navSecondary" class="mt-auto" />
     </SidebarContent>
     <SidebarRail />
