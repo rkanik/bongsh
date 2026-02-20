@@ -52,17 +52,18 @@
         </div>
       </div>
       <DropdownMenuSeparator />
-      <DropdownMenuItem variant="destructive" @select="authStore.logout()">
+      <DropdownMenuItem variant="destructive" @select="onLogout">
         <LucideLogOut class="size-4" />
         Log out
       </DropdownMenuItem>
+      <LogoutDialog hidden v-model:open="logoutDialog" />
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
 
 <script setup lang="ts">
 const authStore = useAuthStore()
-const user = computed(() => authStore.user)
+const { user } = storeToRefs(authStore)
 
 const initials = computed(() => {
   const u = user.value
@@ -74,4 +75,11 @@ const initials = computed(() => {
   if (u?.email && typeof u.email === 'string') return u.email.slice(0, 2).toUpperCase()
   return '?'
 })
+
+const logoutDialog = ref(false)
+function onLogout(e: Event) {
+  e.preventDefault()
+  e.stopPropagation()
+  logoutDialog.value = true
+}
 </script>

@@ -4,12 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "vite",
+    "dev:server": "cd server && deno task dev",
     "build": "vite build && rm -rf server/public && mv dist server/public"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.0",
+    "@tanstack/vue-form": "^1.28.3",
+    "@tanstack/vue-query": "^5.92.9",
     "@vueuse/core": "^14.2.1",
+    "axios": "^1.13.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.575.0",
@@ -19,7 +24,9 @@
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.0",
     "vue": "^3.5.28",
-    "vue-router": "^5.0.2"
+    "vue-router": "^5.0.2",
+    "vue-sonner": "^2.0.9",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.92",
@@ -29,6 +36,7 @@
     "@vitejs/plugin-vue": "^6.0.4",
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/tsconfig": "^0.8.1",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-oxlint": "~1.46.0",
