@@ -22,7 +22,7 @@
       </header>
       <div class="flex flex-1 flex-col">
         <router-view v-slot="{ Component, route }">
-          <transition :name="route.meta.transition || 'slide-up'">
+          <transition name="route-transition" mode="out-in">
             <component :is="Component" :key="route.path" />
           </transition>
         </router-view>
@@ -36,62 +36,18 @@
 </script>
 
 <style scoped>
-/* Slide up transition */
-.slide-up-enter-active,
-.slide-up-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-up-enter-from {
+.route-transition-enter,
+.route-transition-leave-to {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(-12px);
 }
-
-.slide-up-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
+.route-transition-enter-active,
+.route-transition-leave-active {
+  transition: all 250ms ease;
 }
-
-/* Slide left transition */
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-left-enter-from {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.slide-left-leave-to {
-  opacity: 0;
-  transform: translateX(-20px);
-}
-
-/* Slide right transition */
-.slide-right-enter-active,
-.slide-right-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-right-enter-from {
-  opacity: 0;
-  transform: translateX(-20px);
-}
-
-.slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-/* Fade transition */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.route-transition-enter-to,
+.route-transition-leave {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

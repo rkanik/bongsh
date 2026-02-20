@@ -30,16 +30,10 @@ const router = createRouter({
         {
           path: '',
           component: () => import('@/pages/app/index.vue'),
-          meta: {
-            transition: 'slide-up',
-          },
         },
         {
           path: 'settings',
           component: () => import('@/pages/app/settings/index.vue'),
-          meta: {
-            transition: 'slide-up',
-          },
         },
       ],
     },
