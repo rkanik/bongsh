@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import LucideFolderTree from '~icons/lucide/folder-tree'
-import LucideCalendar from '~icons/lucide/calendar'
-import LucideSettings2 from '~icons/lucide/settings-2'
-import LucideBlocks from '~icons/lucide/blocks'
-import LucideTrash2 from '~icons/lucide/trash-2'
-import LucideMessageCircleQuestion from '~icons/lucide/message-circle-question'
 import type { SidebarProps } from './ui/sidebar'
-import LucideHouse from '~icons/lucide/house'
-import LucideUsers from '~icons/lucide/users'
 
 const props = defineProps<SidebarProps>()
 
@@ -17,49 +9,49 @@ const data = {
     {
       title: 'Home',
       to: '/app',
-      icon: LucideHouse,
+      icon: 'lucide:house',
     },
     {
       title: 'Families',
       to: '/app/families',
-      icon: LucideUsers,
+      icon: 'lucide:users',
     },
     {
       title: 'Shared',
       to: '/app/shared',
-      icon: LucideFolderTree,
+      icon: 'lucide:folder-tree',
     },
     {
       title: 'Settings',
       to: '/app/settings',
-      icon: LucideSettings2,
+      icon: 'lucide:settings-2',
     },
   ],
   navSecondary: [
     {
       title: 'Calendar',
       url: '#',
-      icon: LucideCalendar,
+      icon: 'lucide:calendar',
     },
     {
       title: 'Settings',
       url: '#',
-      icon: LucideSettings2,
+      icon: 'lucide:settings-2',
     },
     {
       title: 'Templates',
       url: '#',
-      icon: LucideBlocks,
+      icon: 'lucide:blocks',
     },
     {
       title: 'Trash',
       url: '#',
-      icon: LucideTrash2,
+      icon: 'lucide:trash-2',
     },
     {
       title: 'Help',
       url: '#',
-      icon: LucideMessageCircleQuestion,
+      icon: 'lucide:message-circle-question',
     },
   ],
 }

@@ -3,7 +3,7 @@ defineProps<{
   items: {
     title: string
     url: string
-    icon: Component
+    icon: string
     isActive?: boolean
   }[]
 }>()
@@ -14,7 +14,7 @@ defineProps<{
     <SidebarMenuItem v-for="item in items" :key="item.title">
       <SidebarMenuButton as-child :is-active="item.isActive">
         <a :href="item.url">
-          <component :is="item.icon" />
+          <Icon :name="item.icon" />
           <span>{{ item.title }}</span>
         </a>
       </SidebarMenuButton>

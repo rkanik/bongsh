@@ -8,20 +8,27 @@ type FamilyInput = {
 
 export const useFamiliesMutation = () => {
   const queryClient = useQueryClient()
-
   return useMutation({
     mutationKey: ['families'],
     mutationFn: async ({ id, data }: { id?: number; data: FamilyInput }) => {
       if (id) {
-        const response = await api.put<TFamily>(`/families/${id}`, data)
+        const response = await $fetch<TFamily>(`/families/${id}`, {
+          method: 'PUT',
+          body: data,
+        })
         return response.data
       } else {
-        const response = await api.post<TFamily>('/families', data)
+        const response = await $fetch<TFamily>('/families', {
+          method: 'POST',
+          body: data,
+        })
         return response.data
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['families'] })
+      queryClient.invalidateQueries({
+        queryKey: ['families'],
+      })
     },
   })
 }

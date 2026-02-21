@@ -1,79 +1,63 @@
 <script setup lang="ts">
-import LucideArrowDown from '~icons/lucide/arrow-down'
-import LucideArrowUp from '~icons/lucide/arrow-up'
-import LucideBell from '~icons/lucide/bell'
-import LucideCopy from '~icons/lucide/copy'
-import LucideCornerUpLeft from '~icons/lucide/corner-up-left'
-import LucideCornerUpRight from '~icons/lucide/corner-up-right'
-import LucideFileText from '~icons/lucide/file-text'
-import LucideGalleryVerticalEnd from '~icons/lucide/gallery-vertical-end'
-import LucideLineChart from '~icons/lucide/line-chart'
-import LucideLink from '~icons/lucide/link'
-import LucideMoreHorizontal from '~icons/lucide/more-horizontal'
-import LucideSettings2 from '~icons/lucide/settings-2'
-import LucideStar from '~icons/lucide/star'
-import LucideTrash from '~icons/lucide/trash'
-import LucideTrash2 from '~icons/lucide/trash-2'
-
 const data = [
   [
     {
       label: 'Customize Page',
-      icon: LucideSettings2,
+      icon: 'lucide:settings-2',
     },
     {
       label: 'Turn into wiki',
-      icon: LucideFileText,
+      icon: 'lucide:file-text',
     },
   ],
   [
     {
       label: 'Copy Link',
-      icon: LucideLink,
+      icon: 'lucide:link',
     },
     {
       label: 'Duplicate',
-      icon: LucideCopy,
+      icon: 'lucide:copy',
     },
     {
       label: 'Move to',
-      icon: LucideCornerUpRight,
+      icon: 'lucide:corner-up-right',
     },
     {
       label: 'Move to Trash',
-      icon: LucideTrash2,
+      icon: 'lucide:trash-2',
     },
   ],
   [
     {
       label: 'Undo',
-      icon: LucideCornerUpLeft,
+      icon: 'lucide:corner-up-left',
     },
     {
       label: 'View analytics',
-      icon: LucideLineChart,
+      icon: 'lucide:line-chart',
     },
     {
       label: 'Version History',
-      icon: LucideGalleryVerticalEnd,
+      icon: 'lucide:gallery-vertical-end',
     },
     {
       label: 'Show delete pages',
-      icon: LucideTrash,
+      icon: 'lucide:trash',
     },
     {
       label: 'Notifications',
-      icon: LucideBell,
+      icon: 'lucide:bell',
     },
   ],
   [
     {
       label: 'Import',
-      icon: LucideArrowUp,
+      icon: 'lucide:arrow-up',
     },
     {
       label: 'Export',
-      icon: LucideArrowDown,
+      icon: 'lucide:arrow-down',
     },
   ],
 ]
@@ -85,12 +69,12 @@ const isOpen = ref(false)
   <div class="flex items-center gap-2 text-sm">
     <div class="hidden font-medium text-muted-foreground md:inline-block">Edit Oct 08</div>
     <Button variant="ghost" size="icon" class="h-7 w-7">
-      <LucideStar />
+      <Icon name="lucide:star" />
     </Button>
     <Popover v-model:open="isOpen">
       <PopoverTrigger as-child>
         <Button variant="ghost" size="icon" class="h-7 w-7 data-[state=open]:bg-accent">
-          <LucideMoreHorizontal />
+          <Icon name="lucide:more-horizontal" />
         </Button>
       </PopoverTrigger>
       <PopoverContent class="w-56 overflow-hidden rounded-lg p-0" align="end">
@@ -105,7 +89,7 @@ const isOpen = ref(false)
                 <SidebarMenu>
                   <SidebarMenuItem v-for="(item, index) in group" :key="index">
                     <SidebarMenuButton>
-                      <component :is="item.icon" /> <span>{{ item.label }}</span>
+                      <Icon :name="item.icon" /> <span>{{ item.label }}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>

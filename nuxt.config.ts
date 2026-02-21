@@ -20,15 +20,7 @@ export default defineNuxtConfig({
   },
   nuxtQuery: {
     devtools: true,
-    autoImports: ['useQuery', 'useMutation'],
-    // queryClientOptions: {
-    //   defaultOptions: {
-    //     queries: {
-    //       refetchInterval: 5000,
-    //       refetchOnWindowFocus: false,
-    //     },
-    //   },
-    // },
+    autoImports: true,
   },
   colorMode: {
     storage: 'cookie',

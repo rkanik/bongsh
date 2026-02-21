@@ -8,9 +8,5 @@ export const useAuthMutation = () => {
         credentials: 'include',
       })
     },
-    onSuccess: (data) => {
-      // authStore.user = data.data.user
-      // authStore.token = data.data.token
-    },
   })
 }

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { TFamily } from '@/types'
-import { slugify } from '@server/utils/slugify.ts'
+import { useForm } from '@tanstack/vue-form'
 
 const props = withDefaults(
   defineProps<{
     open?: boolean
     family?: TFamily | null
   }>(),
-  { open: false, family: null },
+  { open: false, family: null }
 )
 
 const emit = defineEmits<{
@@ -39,7 +39,7 @@ const form = useForm({
           toast.success(props.family ? 'Family updated.' : 'Family created.')
           emit('update:open', false)
         },
-      },
+      }
     )
   },
 })
@@ -59,7 +59,7 @@ watch(
       form.setFieldValue('description', family?.description ?? '')
     }
   },
-  { immediate: true },
+  { immediate: true }
 )
 
 function onNameChange(value: string) {

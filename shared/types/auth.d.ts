@@ -3,9 +3,9 @@ declare module '#auth-utils' {
   interface User {
     id: number
     name: string
-    email?: string
-    phone?: string
-    avatar?: string
+    email?: string | null
+    phone?: string | null
+    avatar?: string | null
   }
 
   interface UserSession {
