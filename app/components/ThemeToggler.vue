@@ -9,15 +9,15 @@
         class="inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         aria-label="Theme"
       >
-        <Icon name="lucide:monitor" v-if="theme === 'system'" />
-        <Icon name="lucide:sun" v-else-if="theme === 'light'" />
+        <Icon name="lucide:monitor" v-if="$colorMode.preference === 'system'" />
+        <Icon name="lucide:sun" v-else-if="$colorMode.preference === 'light'" />
         <Icon name="lucide:moon" v-else />
       </button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="min-w-40">
       <DropdownMenuRadioGroup
-        :model-value="theme"
-        @update:model-value="(v) => v && setTheme(v as Theme)"
+        :model-value="$colorMode.preference"
+        @update:model-value="v => v && onThemeChange(v as string)"
       >
         <DropdownMenuRadioItem value="light">
           <Icon name="lucide:sun" />
@@ -37,5 +37,8 @@
 </template>
 
 <script setup lang="ts">
-const { theme, setTheme } = useTheme();
+const colorMode = useColorMode()
+const onThemeChange = (value: string) => {
+  colorMode.preference = value
+}
 </script>

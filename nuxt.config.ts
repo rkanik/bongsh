@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/icon',
     '@peterbud/nuxt-query',
+    '@nuxtjs/color-mode',
   ],
   shadcn: {
     prefix: '',
@@ -28,5 +29,8 @@ export default defineNuxtConfig({
     //     },
     //   },
     // },
+  },
+  colorMode: {
+    storage: 'cookie',
   },
 })
