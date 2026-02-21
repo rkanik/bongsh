@@ -9,20 +9,21 @@
         </NuxtLink>
         <nav class="flex items-center gap-2">
           <NuxtLink
+            v-if="!loggedIn"
             to="/auth"
             class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
           >
             Sign in
           </NuxtLink>
-          <!-- <NuxtLink
+          <NuxtLink
             v-else
             to="/app"
             class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
           >
             My tree
-          </NuxtLink> -->
+          </NuxtLink>
           <ThemeToggler />
-          <UserDropdown small />
+          <UserDropdown v-if="loggedIn" small />
         </nav>
       </div>
     </header>
@@ -36,3 +37,7 @@
     </footer>
   </div>
 </template>
+
+<script setup lang="ts">
+const { loggedIn } = useUserSession()
+</script>

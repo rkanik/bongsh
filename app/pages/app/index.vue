@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button v-if="loggedIn" @click="onLogout">Logout</button>
-    <NuxtLink v-else to="/auth">Login</NuxtLink>
+    <UserDropdown />
 
     <div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sed quibusdam aut ipsam iste
@@ -15,11 +14,4 @@
 definePageMeta({
   layout: 'app-layout',
 })
-
-const { loggedIn, clear } = useUserSession()
-
-const onLogout = async () => {
-  await clear()
-  await navigateTo('/auth')
-}
 </script>
