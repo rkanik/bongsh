@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import AuthenticationForm from '@/components/forms/AuthenticationForm.vue'
-
 definePageMeta({
   layout: 'auth-layout',
 })

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { TFamily } from '@/types'
 import { useForm } from '@tanstack/vue-form'
+import { toast } from 'vue-sonner'
 
 const props = withDefaults(
   defineProps<{
@@ -19,28 +20,19 @@ const { mutateAsync, isPending } = useFamiliesMutation()
 
 const form = useForm({
   defaultValues: {
+    id: null as number | null,
     name: '',
     slug: '',
     description: '',
   },
   onSubmit({ value }) {
-    mutateAsync(
-      {
-        id: props.family?.id,
-        data: {
-          name: value.name,
-          slug: value.slug,
-          description: value.description || undefined,
-        },
+    mutateAsync(value, {
+      onError: (error) => onError(error, form),
+      onSuccess: () => {
+        toast.success(props.family ? 'Family updated.' : 'Family created.')
+        emit('update:open', false)
       },
-      {
-        onError: (error) => onError(error, form),
-        onSuccess: () => {
-          toast.success(props.family ? 'Family updated.' : 'Family created.')
-          emit('update:open', false)
-        },
-      }
-    )
+    })
   },
 })
 
@@ -54,6 +46,7 @@ watch(
   () => [props.open, props.family] as const,
   ([open, family]) => {
     if (open) {
+      form.setFieldValue('id', family?.id ?? null)
       form.setFieldValue('name', family?.name ?? '')
       form.setFieldValue('slug', family?.slug ?? '')
       form.setFieldValue('description', family?.description ?? '')
@@ -64,7 +57,9 @@ watch(
 
 function onNameChange(value: string) {
   form.setFieldValue('name', value)
-  form.setFieldValue('slug', slugify(value))
+  if (!props.family) {
+    form.setFieldValue('slug', slugify(value))
+  }
 }
 
 function onClose() {
@@ -90,7 +85,7 @@ function onClose() {
 
       <form class="space-y-4" @submit.prevent="form.handleSubmit">
         <Alert v-if="errors.length" variant="destructive">
-          <LucideAlertCircle />
+          <Icon name="lucide:alert-circle" />
           <AlertTitle> Error while {{ family ? 'updating' : 'creating' }} family </AlertTitle>
           <AlertDescription>
             <p>{{ errors.join(', ') }}</p>
@@ -123,6 +118,7 @@ function onClose() {
                 :name="field.name"
                 :model-value="field.state.value"
                 :aria-invalid="isInvalid(field)"
+                :disabled="!!family"
                 placeholder="Slug (generated from name)"
                 @blur="field.handleBlur"
                 @input="field.handleChange(($event.target as HTMLInputElement).value)"
