@@ -1,4 +1,4 @@
-import type { TFamily } from '@/types'
+import type { TFamily } from '@@/shared/types'
 import type { TZFamily } from '~~/server/api/families/index.post'
 
 export const useFamiliesMutation = () => {

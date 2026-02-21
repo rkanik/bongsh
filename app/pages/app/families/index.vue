@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TFamily } from '@/types'
+import type { TFamily } from '@@/shared/types'
 
 definePageMeta({
   layout: 'app-layout',

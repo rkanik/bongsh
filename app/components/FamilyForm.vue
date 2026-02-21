@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TFamily } from '@/types'
 import { useForm } from '@tanstack/vue-form'
 import { toast } from 'vue-sonner'
+import type { TFamily } from '@@/shared/types'
 
 const props = withDefaults(
   defineProps<{

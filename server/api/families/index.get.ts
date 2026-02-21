@@ -1,8 +1,9 @@
 import { prisma } from '~~/server/utils/db'
+import type { TFamily } from '@@/shared/types'
 
 export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
-  return prisma.family.findMany({
+  return (await prisma.family.findMany({
     where: {
       OR: [
         {
@@ -41,5 +42,5 @@ export default defineEventHandler(async (event) => {
         },
       },
     },
-  })
+  })) as TFamily[]
 })
