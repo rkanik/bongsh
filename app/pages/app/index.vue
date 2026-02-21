@@ -1,16 +1,7 @@
 <template>
   <div>
-    <div>
-      {{ ready ? 'Ready' : 'Not Ready' }}
-      {{ loggedIn ? 'Logged In' : 'Logged Out' }}
-
-      <pre><code>{{ user }}</code></pre>
-    </div>
-
-    <AuthState v-slot="{ loggedIn, clear }">
-      <button v-if="loggedIn" @click="clear">Logout</button>
-      <NuxtLink v-else to="/auth">Login</NuxtLink>
-    </AuthState>
+    <button v-if="loggedIn" @click="onLogout">Logout</button>
+    <NuxtLink v-else to="/auth">Login</NuxtLink>
 
     <div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sed quibusdam aut ipsam iste
@@ -21,9 +12,14 @@
 </template>
 
 <script setup lang="ts">
-const { ready, loggedIn, user, fetch: fetchUserSession } = useUserSession()
-
 definePageMeta({
   layout: 'app-layout',
 })
+
+const { loggedIn, clear } = useUserSession()
+
+const onLogout = async () => {
+  await clear()
+  await navigateTo('/auth')
+}
 </script>
