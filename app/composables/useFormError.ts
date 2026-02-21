@@ -1,18 +1,12 @@
 import type { AnyFormApi } from '@tanstack/vue-form'
-import { AxiosError } from 'axios'
-import { z } from 'zod'
+import { z, type ZodIssue } from 'zod'
 
 export const useFormError = () => {
-  const onError = (error: Error, form: AnyFormApi) => {
-    let issues: z.core.$ZodIssue[] = []
-    let message = error.message ?? 'Something went wrong'
-    if (error instanceof AxiosError) {
-      if (error.response?.data?.message) {
-        message = error.response?.data?.message
-      }
-      if (error.response?.status === 422) {
-        issues = error.response?.data?.issues ?? []
-      }
+  const onError = (error: any, form: AnyFormApi) => {
+    let issues: ZodIssue[] = []
+    let message = error.data?.data?.message ?? error.message ?? 'Something went wrong'
+    if (error.statusCode === 422) {
+      issues = error.data?.data?.issues ?? []
     }
     issues.forEach((issue) => {
       const path = issue.path[0] as string

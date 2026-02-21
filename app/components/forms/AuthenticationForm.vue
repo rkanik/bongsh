@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
+import { toast } from 'vue-sonner'
+import { useForm } from '@tanstack/vue-form'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
@@ -8,6 +10,7 @@ const props = defineProps<{
 
 const { onError } = useFormError()
 const { mutate, isPending } = useAuthMutation()
+const { fetch: fetchUserSession } = useUserSession()
 
 const form = useForm({
   defaultValues: {
@@ -21,11 +24,12 @@ const form = useForm({
     mutate(value, {
       onError: (error) => onError(error, form),
       onSuccess(res) {
-        if (res.data.tab) {
-          return form.setFieldValue('tab', res.data.tab)
+        if (res.tab) {
+          return form.setFieldValue('tab', res.tab)
         }
         toast.success('Authentication successful!')
-        router.push('/app')
+        fetchUserSession()
+        navigateTo('/app')
       },
     })
   },
@@ -58,10 +62,10 @@ function onBack() {
             </div>
             <div class="flex flex-col gap-5">
               <Alert v-if="errors.length" variant="destructive">
-                <LucideAlertCircle />
-                <AlertTitle
-                  >Error while {{ tab === 'login' ? 'logging in' : 'creating account' }}</AlertTitle
-                >
+                <Icon name="lucide:alert-circle" class="block" />
+                <AlertTitle>
+                  Error while {{ tab === 'login' ? 'logging in' : 'creating account' }}
+                </AlertTitle>
                 <AlertDescription>
                   <p>{{ errors.join(', ') }}</p>
                 </AlertDescription>
@@ -198,8 +202,8 @@ function onBack() {
       </CardContent>
     </Card>
     <FieldDescription class="px-6 text-center">
-      By clicking continue, you agree to our <a href="#">Terms of Service</a> and
-      <a href="#">Privacy Policy</a>.
+      By clicking continue, you agree to our
+      <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
     </FieldDescription>
   </div>
 </template>

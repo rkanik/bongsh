@@ -3,13 +3,8 @@
     <header
       class="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
     >
-      <div
-        class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4"
-      >
-        <NuxtLink
-          to="/"
-          class="font-semibold text-foreground hover:text-primary transition-colors"
-        >
+      <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+        <NuxtLink to="/" class="font-semibold text-foreground hover:text-primary transition-colors">
           Bongsh
         </NuxtLink>
         <nav class="flex items-center gap-2">
@@ -32,12 +27,10 @@
       </div>
     </header>
     <main class="flex-1">
-      <RouterView />
+      <slot />
     </main>
     <footer class="border-t border-border bg-muted/30 py-6">
-      <div
-        class="mx-auto max-w-6xl px-4 text-center text-sm text-muted-foreground"
-      >
+      <div class="mx-auto max-w-6xl px-4 text-center text-sm text-muted-foreground">
         Bongsh — map your roots, together.
       </div>
     </footer>

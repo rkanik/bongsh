@@ -12,10 +12,7 @@
           <img alt="Avatar" class="size-full object-cover" />
           <span class="text-xs font-medium">NA</span>
         </div>
-        <span
-          v-if="!small"
-          class="max-w-32 truncate font-medium text-foreground sm:max-w-40"
-        >
+        <span v-if="!small" class="max-w-32 truncate font-medium text-foreground sm:max-w-40">
           USER
         </span>
         <!-- <LucideChevronDown class="opacity-50" /> -->
@@ -36,7 +33,7 @@
       </div>
       <DropdownMenuSeparator />
       <DropdownMenuItem variant="destructive" @select="onLogout">
-        <LucideLogOut class="size-4" />
+        <Icon name="lucide:log-out" class="size-4" />
         Log out
       </DropdownMenuItem>
       <LogoutDialog hidden v-model:open="logoutDialog" />
@@ -49,8 +46,8 @@
 // const { user } = storeToRefs(authStore)
 
 defineProps<{
-  small?: boolean;
-}>();
+  small?: boolean
+}>()
 
 // const initials = computed(() => {
 //   const u = user.value
@@ -63,10 +60,10 @@ defineProps<{
 //   return '?'
 // })
 
-const logoutDialog = ref(false);
+const logoutDialog = ref(false)
 function onLogout(e: Event) {
-  e.preventDefault();
-  e.stopPropagation();
-  logoutDialog.value = true;
+  e.preventDefault()
+  e.stopPropagation()
+  logoutDialog.value = true
 }
 </script>

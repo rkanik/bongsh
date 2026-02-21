@@ -1,13 +1,15 @@
 export const useAuthMutation = () => {
-  const authStore = useAuthStore()
   return useMutation({
     mutationKey: ['useAuthMutation'],
-    mutationFn: (data: any) => {
-      return api.post('/auth', data)
+    mutationFn: (body: any) => {
+      return $fetch('/api/auth', {
+        body,
+        method: 'POST',
+      })
     },
     onSuccess: (data) => {
-      authStore.user = data.data.user
-      authStore.token = data.data.token
+      // authStore.user = data.data.user
+      // authStore.token = data.data.token
     },
   })
 }
