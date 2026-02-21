@@ -23,13 +23,13 @@ const form = useForm({
   onSubmit({ value }) {
     mutate(value, {
       onError: (error) => onError(error, form),
-      onSuccess(res) {
-        if (res.tab) {
+      async onSuccess(res) {
+        if ('tab' in res && res.tab) {
           return form.setFieldValue('tab', res.tab)
         }
         toast.success('Authentication successful!')
-        fetchUserSession()
-        navigateTo('/app')
+        await fetchUserSession()
+        await navigateTo('/app')
       },
     })
   },

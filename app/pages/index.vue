@@ -2,9 +2,7 @@
   <div class="flex flex-col">
     <!-- Hero -->
     <section class="px-4 py-16 sm:py-24">
-      <div
-        class="mx-auto max-w-6xl flex flex-col items-center gap-12 lg:flex-row lg:gap-16"
-      >
+      <div class="mx-auto max-w-6xl flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
         <div class="flex-1 text-center lg:text-left">
           <div
             class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-sm text-muted-foreground mb-6 animate-in fade-in slide-in-from-bottom-4 duration-500"
@@ -13,9 +11,7 @@
               <span
                 class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"
               />
-              <span
-                class="relative inline-flex h-2 w-2 rounded-full bg-primary"
-              />
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
             Your roots, one place
           </div>
@@ -30,8 +26,8 @@
           <p
             class="mt-6 text-lg text-muted-foreground max-w-xl animate-in fade-in slide-in-from-bottom-4 duration-500 [animation-delay:200ms]"
           >
-            Map your roots, preserve stories, and connect with relatives—all in
-            one simple, private space.
+            Map your roots, preserve stories, and connect with relatives—all in one simple, private
+            space.
           </p>
           <div
             class="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start animate-in fade-in slide-in-from-bottom-4 duration-500 [animation-delay:300ms]"
@@ -60,23 +56,17 @@
     <!-- Screenshot section: Light & Dark -->
     <section class="border-y border-border bg-muted/30 px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-6xl">
-        <h2
-          class="text-center text-2xl font-semibold text-foreground sm:text-3xl"
-        >
+        <h2 class="text-center text-2xl font-semibold text-foreground sm:text-3xl">
           See Bongsh in action
         </h2>
         <p class="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-          The same app, your way — light or dark. Replace the placeholders below
-          with real screenshots.
+          The same app, your way — light or dark. Replace the placeholders below with real
+          screenshots.
         </p>
         <div class="mt-12 grid gap-8 lg:grid-cols-2">
           <div>
-            <p class="mb-3 text-sm font-medium text-muted-foreground">
-              Light mode
-            </p>
-            <div
-              class="rounded-xl border border-border bg-card shadow-lg overflow-hidden"
-            >
+            <p class="mb-3 text-sm font-medium text-muted-foreground">Light mode</p>
+            <div class="rounded-xl border border-border bg-card shadow-lg overflow-hidden">
               <div
                 class="screenshot-frame__chrome rounded-t-xl border-b border-border bg-muted/80 px-4 py-3 flex items-center gap-2"
               >
@@ -102,12 +92,8 @@
             </div>
           </div>
           <div>
-            <p class="mb-3 text-sm font-medium text-muted-foreground">
-              Dark mode
-            </p>
-            <div
-              class="rounded-xl border border-white/10 bg-zinc-900 shadow-xl overflow-hidden"
-            >
+            <p class="mb-3 text-sm font-medium text-muted-foreground">Dark mode</p>
+            <div class="rounded-xl border border-white/10 bg-zinc-900 shadow-xl overflow-hidden">
               <div
                 class="screenshot-frame__chrome screenshot-frame__chrome--dark rounded-t-xl border-b border-white/10 bg-black/40 px-4 py-3 flex items-center gap-2"
               >
@@ -139,9 +125,7 @@
     <!-- Features -->
     <section class="px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-5xl">
-        <h2
-          class="text-center text-2xl font-semibold text-foreground sm:text-3xl"
-        >
+        <h2 class="text-center text-2xl font-semibold text-foreground sm:text-3xl">
           Why map your roots here
         </h2>
         <ul class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -169,11 +153,7 @@
     <!-- How it works -->
     <section class="border-y border-border bg-muted/30 px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-5xl">
-        <h2
-          class="text-center text-2xl font-semibold text-foreground sm:text-3xl"
-        >
-          How it works
-        </h2>
+        <h2 class="text-center text-2xl font-semibold text-foreground sm:text-3xl">How it works</h2>
         <p class="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
           Start in minutes. Grow your tree over a lifetime.
         </p>
@@ -210,14 +190,11 @@
     <!-- For everyone in the family -->
     <section class="px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-6xl">
-        <h2
-          class="text-center text-2xl font-semibold text-foreground sm:text-3xl"
-        >
+        <h2 class="text-center text-2xl font-semibold text-foreground sm:text-3xl">
           Built for the whole family
         </h2>
         <p class="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
-          Whether you're the keeper of stories or just getting started, Bongsh
-          fits how you work.
+          Whether you're the keeper of stories or just getting started, Bongsh fits how you work.
         </p>
         <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <article
@@ -249,9 +226,7 @@
     <!-- Testimonials -->
     <section class="border-y border-border bg-muted/30 px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-4xl">
-        <h2
-          class="text-center text-2xl font-semibold text-foreground sm:text-3xl"
-        >
+        <h2 class="text-center text-2xl font-semibold text-foreground sm:text-3xl">
           Loved by families
         </h2>
         <div class="mt-12 grid gap-8 sm:grid-cols-2">
@@ -264,9 +239,7 @@
             <footer class="mt-4 flex items-center gap-3">
               <div
                 class="placeholder-image h-10 w-10 overflow-hidden rounded-full bg-primary/20"
-                :data-replace="`avatar-${quote.author
-                  .replace(/\s+/g, '-')
-                  .toLowerCase()}`"
+                :data-replace="`avatar-${quote.author.replace(/\s+/g, '-').toLowerCase()}`"
               >
                 <img
                   src="/placeholder.svg"
@@ -275,9 +248,7 @@
                 />
               </div>
               <div>
-                <cite class="not-italic font-medium text-foreground">{{
-                  quote.author
-                }}</cite>
+                <cite class="not-italic font-medium text-foreground">{{ quote.author }}</cite>
                 <p class="text-sm text-muted-foreground">{{ quote.role }}</p>
               </div>
             </footer>
@@ -289,9 +260,7 @@
     <!-- FAQ -->
     <section class="px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-2xl">
-        <h2
-          class="text-center text-2xl font-semibold text-foreground sm:text-3xl"
-        >
+        <h2 class="text-center text-2xl font-semibold text-foreground sm:text-3xl">
           Frequently asked questions
         </h2>
         <dl class="mt-12 space-y-6">
@@ -310,9 +279,7 @@
     <!-- Final CTA -->
     <section class="border-t border-border bg-primary/5 px-4 py-16 sm:py-20">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-2xl font-semibold text-foreground sm:text-3xl">
-          Ready to map your roots?
-        </h2>
+        <h2 class="text-2xl font-semibold text-foreground sm:text-3xl">Ready to map your roots?</h2>
         <p class="mt-4 text-muted-foreground">
           Create your free account and start building your family tree today.
         </p>
@@ -331,99 +298,96 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "default",
-});
+  layout: 'default-layout',
+})
 
 const features = [
   {
-    icon: "🌳",
-    title: "Visual tree",
-    description:
-      "See your family as a clear, interactive tree you can zoom and explore.",
+    icon: '🌳',
+    title: 'Visual tree',
+    description: 'See your family as a clear, interactive tree you can zoom and explore.',
   },
   {
-    icon: "📖",
-    title: "Stories & photos",
-    description:
-      "Attach stories and photos to people so memories stay with the tree.",
+    icon: '📖',
+    title: 'Stories & photos',
+    description: 'Attach stories and photos to people so memories stay with the tree.',
   },
   {
-    icon: "🔗",
-    title: "Invite relatives",
-    description:
-      "Invite family to add and edit together so the tree grows with everyone.",
+    icon: '🔗',
+    title: 'Invite relatives',
+    description: 'Invite family to add and edit together so the tree grows with everyone.',
   },
-];
+]
 
 const howItWorks = [
   {
-    title: "Create your tree",
+    title: 'Create your tree',
     description:
-      "Sign up and add yourself. Then add parents, siblings, and children—or start from an ancestor and work down.",
+      'Sign up and add yourself. Then add parents, siblings, and children—or start from an ancestor and work down.',
   },
   {
-    title: "Add stories & media",
+    title: 'Add stories & media',
     description:
-      "Upload photos and write short stories or facts for each person. Link sources and dates to keep everything clear.",
+      'Upload photos and write short stories or facts for each person. Link sources and dates to keep everything clear.',
   },
   {
-    title: "Invite & collaborate",
+    title: 'Invite & collaborate',
     description:
-      "Send invites to relatives so they can fill in their branch and help keep the tree accurate and up to date.",
+      'Send invites to relatives so they can fill in their branch and help keep the tree accurate and up to date.',
   },
-];
+]
 
 const forFamilies = [
   {
-    title: "Family historians",
+    title: 'Family historians',
     description:
-      "One place for your research. Attach sources, dates, and notes so nothing gets lost.",
+      'One place for your research. Attach sources, dates, and notes so nothing gets lost.',
   },
   {
-    title: "Storytellers",
+    title: 'Storytellers',
     description:
-      "Preserve memories and anecdotes next to the people they belong to, for the next generation.",
+      'Preserve memories and anecdotes next to the people they belong to, for the next generation.',
   },
   {
-    title: "Reconnecting families",
+    title: 'Reconnecting families',
     description:
-      "Share one tree with scattered relatives so everyone stays connected to their roots.",
+      'Share one tree with scattered relatives so everyone stays connected to their roots.',
   },
-];
+]
 
 const testimonials = [
   {
-    text: "Finally we have one place where the whole family can see the tree and add stories. No more scattered spreadsheets.",
-    author: "Sarah M.",
-    role: "Family historian",
+    text: 'Finally we have one place where the whole family can see the tree and add stories. No more scattered spreadsheets.',
+    author: 'Sarah M.',
+    role: 'Family historian',
   },
   {
-    text: "My kids love seeing their great-grandparents’ photos right on the tree. It makes our history feel real.",
-    author: "James K.",
-    role: "Dad of three",
+    text: 'My kids love seeing their great-grandparents’ photos right on the tree. It makes our history feel real.',
+    author: 'James K.',
+    role: 'Dad of three',
   },
-];
+]
 
 const faqs = [
   {
-    question: "Is my family data private?",
+    question: 'Is my family data private?',
     answer:
-      "Yes. Your tree and media are private by default. You choose who can view or edit—only people you invite.",
+      'Yes. Your tree and media are private by default. You choose who can view or edit—only people you invite.',
   },
   {
-    question: "Can I import from another service?",
+    question: 'Can I import from another service?',
     answer:
-      "We’re working on import from common formats. For now you can add people and links manually and we’ll expand options over time.",
+      'We’re working on import from common formats. For now you can add people and links manually and we’ll expand options over time.',
   },
   {
-    question: "How many people can I add?",
+    question: 'How many people can I add?',
     answer:
-      "There’s no hard limit. Add as many relatives as you need and invite as many collaborators as you like.",
+      'There’s no hard limit. Add as many relatives as you need and invite as many collaborators as you like.',
   },
   {
-    question: "Can I use it on my phone?",
+    question: 'Can I use it on my phone?',
     answer:
-      "Bongsh works in your browser on desktop and mobile so you can view and edit your tree from anywhere.",
+      'Bongsh works in your browser on desktop and mobile so you can view and edit your tree from anywhere.',
   },
-];
+]
 </script>

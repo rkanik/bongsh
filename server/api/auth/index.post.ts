@@ -112,13 +112,11 @@ export default defineEventHandler(async (event) => {
         email: user.email,
         avatar: user.avatar,
       }
-      setUserSession(event, {
+      await setUserSession(event, {
         user: data,
         loggedInAt: new Date(),
       })
-      return {
-        user: data,
-      }
+      return await getUserSession(event)
     }
 
     // Register
@@ -154,13 +152,11 @@ export default defineEventHandler(async (event) => {
         name: user.name,
         email: user.email,
       }
-      setUserSession(event, {
+      await setUserSession(event, {
         user: data,
         loggedInAt: new Date(),
       })
-      return {
-        user: data,
-      }
+      return await getUserSession(event)
     }
     return createError({
       statusCode: 400,

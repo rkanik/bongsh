@@ -5,6 +5,7 @@ export const useAuthMutation = () => {
       return $fetch('/api/auth', {
         body,
         method: 'POST',
+        credentials: 'include',
       })
     },
     onSuccess: (data) => {

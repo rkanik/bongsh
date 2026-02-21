@@ -23,7 +23,7 @@
 <script setup lang="ts">
 const { ready, loggedIn, user, fetch: fetchUserSession } = useUserSession()
 
-onMounted(() => {
-  fetchUserSession()
+definePageMeta({
+  layout: 'app-layout',
 })
 </script>
