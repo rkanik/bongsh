@@ -9,5 +9,9 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'app-layout',
+  pageTransition: {
+    name: 'slide-transition',
+    mode: 'out-in',
+  },
 })
 </script>

@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -117,4 +117,19 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.slide-transition-enter,
+.slide-transition-leave-to {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+.slide-transition-enter-active,
+.slide-transition-leave-active {
+  transition: all 250ms ease;
+}
+.slide-transition-enter-to,
+.slide-transition-leave {
+  opacity: 1;
+  transform: translateY(0);
 }
