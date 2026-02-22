@@ -12,13 +12,7 @@ definePageMeta({
   },
 })
 
-const {
-  data: families,
-  status,
-  refresh,
-} = useFetch('/api/families', {
-  //
-})
+const { data: families, status, refresh } = useFetch('/api/families')
 
 const isDialogOpen = ref(false)
 const editingFamily = ref<TFamily | null>(null)

@@ -1,3 +1,16 @@
+<script setup lang="ts">
+definePageMeta({
+  layout: 'app-layout',
+  pageTransition: {
+    name: 'slide-transition',
+    mode: 'out-in',
+  },
+})
+
+const route = useRoute()
+const { data: family, status, error } = useFetch(`/api/families/${route.params.id}`)
+</script>
+
 <template>
   <div class="p-4">
     <div class="flex justify-center">
@@ -9,29 +22,9 @@
         {{ error?.data.data.message || 'An unknown error occurred' }}
       </p>
     </div>
+
     <div v-if="family">
       <pre><code>{{ family }}</code></pre>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-definePageMeta({
-  layout: 'app-layout',
-  pageTransition: {
-    name: 'slide-transition',
-    mode: 'out-in',
-  },
-})
-
-// type FamilyRow = SerializeObject<TFamily>
-
-const route = useRoute()
-const {
-  data: family,
-  status,
-  error,
-} = useFetch(`/api/families/${route.params.id}`, {
-  server: false,
-})
-</script>

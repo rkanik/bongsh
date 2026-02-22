@@ -47,6 +47,17 @@ export default defineEventHandler(async (event) => {
           },
         },
       },
+      persons: {
+        include: {
+          children: true,
+          wives: {
+            include: {
+              wife: true,
+              husband: true,
+            },
+          },
+        },
+      },
     },
   })) as TFamily | null
   if (!family) {

@@ -16,6 +16,7 @@
         </div>
         <div class="ml-auto px-3">
           <NavActions />
+          <ThemeToggler />
         </div>
       </header>
       <div class="flex flex-1 flex-col">
