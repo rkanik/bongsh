@@ -48,13 +48,11 @@ export default defineEventHandler(async (event) => {
         },
       },
       persons: {
-        include: {
-          children: true,
-          wives: {
-            include: {
-              wife: true,
-              husband: true,
-            },
+        select: {
+          id: true,
+          name: true,
+          parents: {
+            include: {},
           },
         },
       },

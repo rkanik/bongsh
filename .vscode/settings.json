@@ -1,10 +1,22 @@
 {
-    "cSpell.words": [
-        "lucide",
-        "nuxtjs",
-        "peterbud",
-        "sonner",
-        "tanstack",
-        "vueuse"
-    ]
+  "cSpell.words": [
+    "autoincrement",
+    "bongsh",
+    "lucide",
+    "nuxtjs",
+    "peterbud",
+    "sonner",
+    "tanstack",
+    "Timestamptz",
+    "vueuse"
+  ],
+  "task.allowAutomaticTasks": true,
+  "debug.openDebug": "neverOpen",
+  "terminal.integrated.inheritEnv": false,
+  "tasks": {
+    "label": "lint on open",
+    "type": "shell",
+    "command": "npm run lint",
+    "runOn": "folderOpen"
+  }
 }
