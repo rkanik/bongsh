@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { TFamily } from '@@/shared/types'
 
+/** Family shape from list API (dates may be serialized as strings) */
+type FamilyRow = Pick<TFamily, 'id' | 'name' | 'slug' | 'description' | 'owner' | 'members'>
+
 definePageMeta({
   layout: 'app-layout',
   pageTransition: {
@@ -19,6 +22,7 @@ const {
 
 const isDialogOpen = ref(false)
 const editingFamily = ref<TFamily | null>(null)
+const deletingFamilyId = ref<number | null>(null)
 
 watch(isDialogOpen, (open) => {
   if (!open) editingFamily.value = null
@@ -29,9 +33,24 @@ function openCreateDialog() {
   isDialogOpen.value = true
 }
 
-function openEditDialog(family: TFamily) {
-  editingFamily.value = family
+function openEditDialog(family: FamilyRow, e?: Event) {
+  e?.preventDefault()
+  e?.stopPropagation()
+  editingFamily.value = family as unknown as TFamily
   isDialogOpen.value = true
+}
+
+async function deleteFamily(family: FamilyRow, e?: Event) {
+  e?.preventDefault()
+  e?.stopPropagation()
+  if (!confirm(`Delete "${family.name}"? This cannot be undone.`)) return
+  deletingFamilyId.value = family.id
+  try {
+    await $fetch(`/api/families/${family.id}`, { method: 'DELETE' })
+    await refresh()
+  } finally {
+    deletingFamilyId.value = null
+  }
 }
 </script>
 
@@ -60,23 +79,14 @@ function openEditDialog(family: TFamily) {
         </div>
 
         <div v-else class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <div
+          <FamilyCard
             v-for="family in families"
             :key="family.id"
-            class="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
-            @click="openEditDialog(family)"
-          >
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-semibold">{{ family.name }}</h3>
-              <Button variant="ghost" size="sm" @click.stop="openEditDialog(family)"> Edit </Button>
-            </div>
-            <p class="text-sm text-muted-foreground mb-1">
-              <span class="font-medium">Slug:</span> {{ family.slug }}
-            </p>
-            <p v-if="family.description" class="text-sm text-muted-foreground">
-              {{ family.description }}
-            </p>
-          </div>
+            :family="family"
+            :is-deleting="deletingFamilyId === family.id"
+            @edit="openEditDialog"
+            @delete="deleteFamily"
+          />
         </div>
       </div>
     </ClientOnly>
