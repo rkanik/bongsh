@@ -65,7 +65,7 @@ const data = {
         <SidebarMenuItem v-for="item in data.navMain" :key="item.title">
           <SidebarMenuButton as-child :is-active="item.to === $route.path">
             <RouterLink :to="item.to">
-              <component :is="item.icon" />
+              <Icon :name="item.icon" />
               <span>{{ item.title }}</span>
             </RouterLink>
           </SidebarMenuButton>

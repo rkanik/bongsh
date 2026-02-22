@@ -3,7 +3,9 @@ import type { PersonModel } from '@@/prisma/client/models/Person'
 import type { FamilyModel } from '@@/prisma/client/models/Family'
 import type { FamilyMemberModel } from '@@/prisma/client/models/FamilyMember'
 
-export type TUser = UserModel &
+import type { SerializeObject } from 'nuxt/app/composables/use-fetch'
+
+export type TUser = SerializeObject<UserModel> &
   Partial<{
     persons: TPerson[]
     members: TFamilyMember[]
