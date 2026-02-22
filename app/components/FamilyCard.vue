@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { TFamily, TFamilyMember } from '@@/shared/types'
 import { initials } from '@@/shared/utils/initials'
+import type { ActionsMenuItem } from '@/components/ActionsMenu.vue'
 
 /** Family shape from list API (dates may be serialized as strings) */
 type FamilyRow = Pick<TFamily, 'id' | 'name' | 'slug' | 'description' | 'owner' | 'members'>
@@ -14,6 +15,27 @@ const emit = defineEmits<{
   edit: [family: FamilyRow, e?: Event]
   delete: [family: FamilyRow, e?: Event]
 }>()
+
+const familyActions = computed<ActionsMenuItem<FamilyRow>[]>(() => [
+  {
+    id: 'edit',
+    label: 'Edit',
+    icon: 'lucide:pencil',
+    onClick(payload: FamilyRow, e: Event) {
+      emit('edit', payload, e)
+    },
+  },
+  {
+    id: 'delete',
+    label: 'Delete',
+    icon: 'lucide:trash-2',
+    variant: 'destructive',
+    disabled: props.isDeleting,
+    onClick(payload: FamilyRow, e: Event) {
+      emit('delete', payload, e)
+    },
+  },
+])
 
 /** Members to show as avatars: owner first (if present), then members excluding owner */
 function avatarPeople(family: FamilyRow): { name: string; role: string; avatar?: string | null }[] {
@@ -56,37 +78,8 @@ const people = computed(() => avatarPeople(props.family))
       <CardHeader class="pb-2">
         <div class="flex items-start gap-2 min-w-0">
           <CardTitle class="truncate flex-1">{{ family.name }}</CardTitle>
-          <CardAction @click.prevent>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                as-child
-                @click.stop
-                class="rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  class="size-8 shrink-0"
-                  aria-label="Family actions"
-                >
-                  <Icon name="lucide:more-vertical" class="size-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" @click.stop>
-                <DropdownMenuItem @select="(e: Event) => emit('edit', family, e)">
-                  <Icon name="lucide:pencil" class="size-4" />
-                  Edit
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  variant="destructive"
-                  :disabled="isDeleting"
-                  @select="(e: Event) => emit('delete', family, e)"
-                >
-                  <Icon name="lucide:trash-2" class="size-4" />
-                  Delete
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <CardAction>
+            <ActionsMenu :items="familyActions" :payload="family" aria-label="Family actions" />
           </CardAction>
         </div>
       </CardHeader>

@@ -17,7 +17,7 @@ const {
   status,
   refresh,
 } = useFetch('/api/families', {
-  server: false,
+  //
 })
 
 const isDialogOpen = ref(false)
@@ -34,15 +34,11 @@ function openCreateDialog() {
 }
 
 function openEditDialog(family: FamilyRow, e?: Event) {
-  e?.preventDefault()
-  e?.stopPropagation()
   editingFamily.value = family as unknown as TFamily
   isDialogOpen.value = true
 }
 
 async function deleteFamily(family: FamilyRow, e?: Event) {
-  e?.preventDefault()
-  e?.stopPropagation()
   if (!confirm(`Delete "${family.name}"? This cannot be undone.`)) return
   deletingFamilyId.value = family.id
   try {
