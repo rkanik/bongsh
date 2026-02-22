@@ -102,7 +102,13 @@ export default defineEventHandler(async (event) => {
         return createError({
           statusCode: 422,
           data: {
-            message: 'Wrong password, try again!',
+            issues: [
+              {
+                code: 'custom',
+                path: ['password'],
+                message: 'Wrong password, try again!',
+              },
+            ],
           },
         })
       }
