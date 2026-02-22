@@ -13,7 +13,9 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@peterbud/nuxt-query',
     '@nuxtjs/color-mode',
+    'nuxt-primevue',
   ],
+  css: ['primevue/resources/themes/aura-light-green/theme.css'],
   shadcn: {
     prefix: '',
     componentDir: '@/components/ui',
